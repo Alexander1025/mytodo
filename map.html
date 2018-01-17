@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+	<title>
+	    小虫
+	</title>
+	<style type="text/css">
+		#container{
+			width: 100vw;
+			height: 100vh;
+		}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+	<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=BFXj0c60XOW3UUKDlL3nM0i9XPcq72qe&s=1"></script>
+	<script type="text/javascript">
+		window.onload = function (){
+			// 百度地图API功能
+			var map = new BMap.Map("container"); // 创建地图实例
+			var point = new BMap.Point({$housedetail['longitude']|default="113.27082"}, {$housedetail['latitude']|default="23.133641"}); // 创建点坐标
+			// map.centerAndZoom(point, 16); // 初始化地图，设置中心点坐标和地图级别
+			map.centerAndZoom(point, 1);
+			map.enableScrollWheelZoom();
+			map.addControl(new BMap.NavigationControl()); //添加默认缩放平移控件
+			map.addControl(new BMap.ScaleControl()); //比例尺
+			//map.addControl(new BMap.OverviewMapControl()); //缩略图
+			//map.addControl(new BMap.MapTypeControl()); //地图类型
+			//自定义图标
+			// var myIcon = new BMap.Icon("//images.xiniuw.com/merchant/image/mite/icon/noimg.png", new BMap.Size(20,20));
+			// var marker = new BMap.Marker(point,{icon:myIcon});
+			// var marker = new BMap.Marker(point);
+			// marker.enableDragging();
+			// map.addOverlay(marker);
+
+			for(var i = 0 ; i < 10 ; i++){
+				var point = new BMap.Point(113.27082 * (Math.random() * 0.7), 23.133641 * (Math.random() * 0.7));
+				// console.log(point);
+				// point.enableDragging();
+				// map.addOverlay(point);
+				var marker = new BMap.Marker(point);
+	  			map.addOverlay(marker);
+			}
+
+			coder = new BMap.Geocoder();
+
+			// // 创建控件实例    
+			// var myZoomCtrl = new ZoomControl();
+			// // 添加到地图当中    
+			// map.addControl(myZoomCtrl);
+			 
+			var customLayer;
+			// marker = new BMap.Marker(point);
+			// marker.enableDragging();
+			// map.addOverlay(marker);
+			// marker.addEventListener("dragend", function (e) {
+			//     setpoint(e.point, 1);
+			// });
+			 
+			map.addEventListener('click', function (e) {
+			    // setpoint(e.point, 2);
+			    console.log(e.point);
+			});
+			 
+			var touchStart = null;
+			var touchMove = false;
+			map.addEventListener("touchstart", function (e) {
+			    touchStart = e.pixel;
+			    touchMove = false;
+			});
+			map.addEventListener("touchend", function (e) {
+				// console.log(e);
+				deletePoint();
+			    if (Math.abs(touchStart.x - e.pixel.x) <= 10 && Math.abs(touchStart.y - e.pixel.y) <= 10) setpoint(e.point, 3);
+			});
+
+			function setpoint(p, t) {
+				longitude = p.lng;
+				latitude = p.lat;
+				
+			    point.lng = p.lng;
+			    point.lat = p.lat;
+			 
+			    // marker.setPosition(point);
+			    map.setCenter(point);
+			    /*
+			    map.removeOverlay(marker);
+			    marker.point = point;
+			    map.addOverlay(marker);
+			*/
+			    //alert(point.lng + "," + point.lat + ":" + t);
+			    //coder.getLocation(point, echovalue);
+			}
+
+			function deletePoint(){
+				var allOverlay = map.getOverlays();
+				for(var j = 0 ; j <= allOverlay.length-3 ; j++){
+					map.removeOverlay(allOverlay[j]);
+				}
+			}
+		}
+
+	</script>
+</body>
+</html>
