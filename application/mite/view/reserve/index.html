@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+            <meta charset="utf-8">
+                <title>
+                    小虫
+                </title>
+                <link href="__PUBLIC__/css/mite.css" rel="stylesheet" type="text/css"/>
+                <link href="__PUBLIC__/css/miteIndex.css" rel="stylesheet" type="text/css"/>
+            </meta>
+        </meta>
+        <style type="text/css">
+            .orderListtianjia{
+                text-align: center;
+                line-height: 12px;
+                background-color: #FFCAB9;
+            }
+            .orderListInput{
+                display: none;
+            }
+            .orderListInput input{
+                font-style: normal;
+                width: 60vw;
+                text-align: left;
+                border: 1px solid #ccc;
+                height: 26px;
+                border-radius: 3px;
+            }
+            .orderListInput .iiiii{
+                display: block;
+                text-align: center;
+                font-style: normal;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap order">
+            <div class="detailTopImg">
+                <img alt="" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180739508&di=e9c27f1a736174a50dea5ae00901c28e&imgtype=0&src=http%3A%2F%2Fupload.ishaanxi.com%2F2014%2F0807%2F1407379375948.jpg">
+                    <span class="back">
+                        <
+                    </span>
+                
+            </div>
+            <div class="wrapOrderList">
+                <h4>
+                    入住时段
+                </h4>
+                <ul class="orderListUl">
+                    <li id="checkintime">
+                        <img alt="" src="__PUBLIC__/image/icon/calender.png">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input class="layui-input" id="test1" placeholder="入住时间" type="text">
+                                    </input>
+                                </div>
+                            </div>
+                            <!-- <span>入住时间</span> -->
+                        
+                    </li>
+                    <li id="leavetime">
+                        <img alt="" src="__PUBLIC__/image/icon/calender.png">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input class="layui-input" id="test2" placeholder="离开时间" type="text">
+                                    </input>
+                                </div>
+                            </div>
+                            <!-- <span>离开时间</span> -->
+                        
+                    </li>
+                </ul>
+            </div>
+            <!--  <div class="wrapOrderList">
+				<h4>预定数量</h4>
+				<div class="orderList">
+					<h3><em>1</em>间</h3>
+				</div>
+			</div> -->
+            <style>
+                .orderList span{text-align: right;}
+            </style>
+            <div class="wrapOrderList">
+                <h4>
+                    <span class="reservelistadd">
+                        入住人信息
+                    </span>
+                </h4>
+                <!-- <div class="orderList bookdel">
+                    <span>
+                        真实姓名:
+                    </span>
+                    <var>
+                        小明
+                    </var>
+                    <span>
+                        身份证:
+                    </span>
+                    <var>
+                        441010199311112255
+                    </var>
+                    <span>
+                        手机:
+                    </span>
+                    <var>
+                        +86 12345678978
+                    </var>
+                </div> -->
+                <div class="orderList orderListtianjia">
+                    添加常用入住人
+                </div>
+                <div class="orderList orderListInput">
+                    <span>
+                        真实姓名:
+                    </span>
+                    <var>
+                        <input type="text" placeholder="预订人真实姓名">
+                    </var>
+                    <span>
+                        身份证:
+                    </span>
+                    <var>
+                        <input type="number" placeholder="预订人身份证">
+                    </var>
+                    <span>
+                        手机:
+                    </span>
+                    <var>
+                       <input type="phone" placeholder="预订人手机">
+                    </var>
+                    <i class="iiiii">
+                        添加常用入住人
+                    </i> 
+                </div>
+            </div>
+            <div class="wrapOrderList">
+                <h4>
+                    预订人信息
+                </h4>
+                <div class="orderList">
+                    <span>
+                        真实姓名:
+                    </span>
+                    <var>
+                        水电费
+                    </var>
+                </div>
+                <div class="orderList">
+                    <span>
+                        手机:
+                    </span>
+                    <var>
+                        +86 12345678978
+                    </var>
+                </div>
+            </div>
+            <div class="wrap" id="wrapInput">
+                <div class="inputElement">
+
+                    <div class="inputList inputSelectNoPost" id="insurance">
+                        <div class="inputRight">
+                            <em class="tipText">
+                                <var class="unit" style="display: inline;">不需要保险</var>
+                                >
+                            </em>
+                        </div>
+                        <span>是否需要保险</span>
+                        <var class="inputSelectTip">
+                            
+                        </var>
+                        <div class="hiddenInput">
+                            <div class="titleInput">
+                                
+                            </div>
+                            <div class="sortInput">
+                                0
+                            </div>
+                            <div class="wrapSelect">
+                                <select data-name="bedsheet">
+                                    <option value="0">不需要保险</option>
+                                    <option value="1">需要保险</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="inputList inputSelectNoPost" id="invoice">
+                        <div class="inputRight">
+                            <em class="tipText">
+                                <var class="unit" style="display: inline;">不需要发票</var>
+                                >        
+                            </em>
+                        </div>
+                        <span>是否需要发票</span>
+                        <var class="inputSelectTip">
+                            
+                        </var>
+                        <div class="hiddenInput">
+                            <div class="titleInput">
+                                
+                            </div>
+                            <div class="sortInput">
+                                0
+                            </div>
+                            <div class="wrapSelect">
+                                <select data-name="bedsheet">
+                                    <option value="0">不需要发票</option>
+                                    <option value="1">需要发票</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="read">
+                <input class="chk_1" id="checkbox_a1" name="asd" type="checkbox"/>
+                <label for="checkbox_a1">
+                </label>
+                我已阅读并同意
+                <a href="//www.xiniuw.com/site/News/newsDetail/typeid/99/newsid/1300">
+                    《房客规则》
+                </a>
+                <a href="//www.xiniuw.com/site/News/newsDetail/typeid/99/newsid/1304">
+                    《未成年人入住规则》
+                </a>
+                及房东制定的规则
+            </div> -->
+        </div>
+        <div class="wrapOrderBottom">
+            <div class="orderLeft">
+                订单总额:
+            </div>
+            <div class="orderRigth">
+                立即预订
+            </div>
+        </div>
+        <script src="__PUBLIC__/js/jquery-3.1.0.min.js">
+        </script>
+        <script src="__PUBLIC__/js/layui/layui.js" type="text/javascript">
+        </script>
+        <script src="__PUBLIC__/js/picker.min.js">
+        </script>
+        <script src="__PUBLIC__/js/miteCommon.js">
+        </script>
+        <script type="text/javascript">
+            $(function (){
+                delBook();
+                $(".orderRigth").on("click",function (){
+                	// if(!$("#checkbox_a1")[0].checked){
+                	// 	alert("请先阅读并同意《规则》");
+                	// 	return false;
+                	// }
+
+                    var data = {};
+
+                    var winhref = window.location.href;
+                    data['houseid'] = winhref.slice(winhref.indexOf("houseid=")+8);
+
+                    var checkinuserList = document.getElementsByClassName("bookdel");
+                    var checkinuserArr = [];
+                    for(var checkinuserI = 0 ; checkinuserI <= checkinuserList.length-1 ; checkinuserI++){
+                        checkinuserArr.push(checkinuserList[checkinuserI].getAttribute("data-id"));
+                    }
+                    data['checkinuser'] = checkinuserArr;
+
+                    data['insurance'] = document.getElementById("insurance").getAttribute("input");
+                    data['invoice'] = document.getElementById("invoice").getAttribute("input");
+                    data['checkintime'] = document.getElementById("checkintime").getAttribute("input");
+                    data['leavetime'] = document.getElementById("leavetime").getAttribute("input");
+
+                    console.log(data);
+                    // return false;
+                    $.ajax({
+                        type: "POST",
+                        url: "{:url('/mite/reserve/addreserve')}",
+                        data: data,
+                        success: function(data){
+                            console.log(data);
+                            if(data.state == 1){
+                                alert("提交成功");
+                            }
+                            console.log(data);
+                        }
+                    });
+
+
+                });
+                $(".orderListtianjia").on("click",function (){
+                    $(".orderListInput").slideToggle();
+                });
+                $(".iiiii").on("click",function (){
+                    var thisDiv = $(this);
+                    $.ajax({
+                        type: "POST",
+                        url: "{:url('/mite/reserve/addcheckinuser')}",
+                        data: {
+                            realname:$(".orderListInput").find("input[type='text']").val(),
+                            idcard:$(".orderListInput").find("input[type='number']").val(),
+                            mobile:$(".orderListInput").find("input[type='phone']").val()
+                        },
+                        success: function(data){
+                            console.log(data);
+
+                            if(data['state'] == 1){
+                                alert("提交成功");
+                                $(".orderListInput").slideUp();
+                                $(".orderListtianjia").before("<div class='orderList bookdel' data-id='"+data['data']['checkinuserid']+"'>"+
+                                                                "<span>"+
+                                                                    "真实姓名:"+
+                                                                "</span>"+
+                                                                " <var>"+
+                                                                    $(".orderListInput").find("input[type='text']").val()+
+                                                                "</var>"+
+                                                                "<span>"+
+                                                                    "身份证:"+
+                                                                "</span>"+
+                                                                " <var>"+
+                                                                    $(".orderListInput").find("input[type='number']").val()+
+                                                                "</var>"+
+                                                                "<span>"+
+                                                                    "手机:"+
+                                                                "</span>"+
+                                                                " <var>"+
+                                                                    $(".orderListInput").find("input[type='phone']").val()+
+                                                                "</var>"+
+                                                            "</div>");
+                                delBook();
+                                $(".orderListInput").find("input[type='text']").val("");
+                                $(".orderListInput").find("input[type='number']").val("");
+                                $(".orderListInput").find("input[type='phone']").val("");
+                            }
+                        }
+                    });
+                    
+                });
+
+                // select下拉框
+                $(".inputSelectNoPost").on("click",function (){
+                    var thisDiv = $(this);
+                    var data = [];
+                    var thisInputClass = $(this).find(".hiddenInput select");
+                    for(var i = 0 , j = thisInputClass.length; i < j ; i++){
+                        // console.log(thisInputClass[i]);
+                        var thisInputInfo = thisInputClass[i];
+                        var dataInfo = [];
+                        for(var k = 0 , l = $(thisInputInfo).find("option").length; k < l ; k++){
+                            // console.log(thisInputInfo[k]);
+                            var dataInfoObj = {
+                                text: thisInputInfo[k].innerHTML,
+                                value: thisInputInfo[k].value
+                            };
+                            // console.log(dataInfoObj);
+                            dataInfo.push(dataInfoObj);
+                        }
+                        data.push(dataInfo);
+                    }
+                    var title = $(this).find(".titleInput").html();
+                    var sortInput = $(this).find(".sortInput").html().split(",");
+
+                    var picker = new Picker({
+                        data: data,
+                        title: title,
+                        selectedIndex: sortInput,
+                        
+                    });
+                    picker.show();
+                    picker.on('picker.select', function (selectedVal, selectedIndex) {
+
+                        // console.log(data);
+                        // console.log(selectedVal);
+                        // console.log(selectedIndex);
+                        // console.log(data[0][selectedIndex[0]]['value']);
+                        // thisDiv.find(".sortInput").html(selectedIndex.join(","));
+                        // return false;
+                        
+                        var ajaxdata = {};
+                        var selectLen = thisDiv.find("select").length;
+                        var tipText = "";
+                        for(var s = 0 ; s < selectLen ; s++){
+                            ajaxdata[thisDiv.find("select").eq(s).data("name")] = data[s][selectedIndex[s]]['value'];
+                            tipText += data[s][selectedIndex[s]]['text'];
+                        }
+                        thisDiv.find(".tipText")[0].outerHTML = "<em class='tipText'>"+
+                                        "<var class='unit' style='display: inline;'>"+
+                                            tipText+
+                                        "</var>"+
+                                        "&gt;"+
+                                    "</em>";
+                        thisDiv.find(".inputSelectTip")[0].innerHTML = "";
+                        thisDiv[0].setAttribute("input",data[0][selectedIndex[0]]['value']);
+
+                        // console.log($("#wrapInput").data("ajaxurl"));
+                        // console.log(ajaxdata);
+                        // return false;
+                    })
+                }); 
+    	});
+
+
+
+        function delBook(){
+            $(".bookdel").off("click");
+            $(".bookdel").on("click",function (){
+                console.log($(this));
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('/mite/reserve/delcheckinuser')}",
+                    data: {
+                        checkinuserid:$(this).data("id")
+                    },
+                    success: function(data){
+                        console.log(data);
+                        if(data['state'] == 1){
+                            alert("删除成功");
+                        }
+                    }
+                });
+                $(this).remove();
+            });
+        }
+
+
+        
+	    var nowDate = getNowFormatDate();
+        var myStartDate = nowDate;
+        var myEndDate = nowDate;
+	    layui.use(['layer','laydate'], function(){
+			var laydate = layui.laydate;
+			//常规用法
+			laydate.render({
+				elem: '#test1',
+				showBottom: false,
+				min: nowDate,
+				calendar: true,
+				theme: '#FD8137',
+                value: nowDate,
+                done: function(value, date, endDate){
+                    console.log(value);
+                    console.log(date);
+                    var days = countDateImprove("test1","test2");
+                    console.log(days);
+                    if(!days){
+                        alert("入住时间必须早于退房时间");
+                        $("#test1").val(myStartDate);
+                        return false;
+                    }
+                    myStartDate = value;
+                    var timecheckintime = (Date.parse(value))/1000;
+                    var checkintime = document.getElementById("checkintime");
+                    checkintime.setAttribute("input",timecheckintime);
+                }
+			});
+
+			//常规用法
+			laydate.render({
+				elem: '#test2',
+				showBottom: false,
+				min: nowDate,
+				calendar: true,
+				theme: '#FD8137',
+                value: nowDate,
+                done: function(value, date, endDate){
+                    console.log(value);
+                    console.log(date);
+                    var days = countDateImprove("test1","test2");
+                    console.log(days);
+                    if(!days){
+                        alert("入住时间必须早于退房时间");
+                        $("#test2").val(myEndDate);
+                        return false;
+                    }
+                    myEndDate = value;
+                    var timeleavetime = (Date.parse(value))/1000;
+                    var leavetime = document.getElementById("leavetime");
+                    leavetime.setAttribute("input",timeleavetime);
+                }
+			});
+
+	        //直接嵌套显示
+			// laydate.render({
+			// 	elem: '#test-n1',
+			// 	position: 'static',
+			// 	showBottom: false,
+			// 	min: nowDate,
+			// 	theme: '#FD8137',
+			// 	calendar: true,
+			// 	mark: {
+			// 		'2017-11-21': '已租',
+			// 		'2017-11-22': '已租',
+			// 		'2017-11-25': '已租',
+			// 	}
+			// });
+
+		});
+        </script>
+    </body>
+</html>

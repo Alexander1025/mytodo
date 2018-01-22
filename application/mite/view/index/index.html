@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="UTF-8">
+	<title>
+		小虫
+	</title>
+	<link href="__PUBLIC__/css/mite.css" rel="stylesheet" type="text/css"/>
+	<link href="__PUBLIC__/css/miteIndex.css" rel="stylesheet" type="text/css"/>
+	<link href="__PUBLIC__/js/swiper/swiper-4.0.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+	<div class="wrap" id="wrap" data-canajax="yes">
+		<div class="wrapIndexOne">
+			<div class="wrapOneSwiper">
+				<!-- <img src="__PUBLIC__/image/uiindex.jpg" alt=""> -->
+				<div class="swiper-container" style="height: 380px;">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="__PUBLIC__/image/uiindex.jpg" alt="">
+						</div>
+						<div class="swiper-slide">
+							<img src="__PUBLIC__/image/liuliuindex.jpg" alt="">
+						</div>
+						<div class="swiper-slide">
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180683609&di=adce65a4ba50ad2528a01102c38000d9&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F13%2F61%2F38%2F98b58PIChKs_1024.jpg" alt="">
+						</div>
+						<div class="swiper-slide">
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180739508&di=e9c27f1a736174a50dea5ae00901c28e&imgtype=0&src=http%3A%2F%2Fupload.ishaanxi.com%2F2014%2F0807%2F1407379375948.jpg" alt=""> 
+						</div>
+						<div class="swiper-slide">
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180954554&di=3d9a70d35e38496c1bd99ddada08b62a&imgtype=0&src=http%3A%2F%2Ftc.sinaimg.cn%2Fmaxwidth.2048%2Ftc.service.weibo.com%2Fp%2Fmmbiz_qpic_cn%2Fd613e49bded2cd5799469646cbca9018.jpg" alt="">
+						</div>
+						<div class="swiper-slide">
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180976923&di=836891b762e04902eda8cd78bd472232&imgtype=0&src=http%3A%2F%2Fwww.sxhpf.com%2Fuploadfile%2F2017%2F0331%2F20170331112827974.jpg" alt="">
+						</div>
+						<div class="swiper-slide">
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511181104999&di=7c735fde98540438738fe794881e6ce1&imgtype=jpg&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D1082197602%2C4141784640%26fm%3D214%26gp%3D0.jpg" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="wrapSearch">
+				<div class="wrapSearchWrap">
+					<div class="wrapSearchList">
+						<em>广州</em>
+						<span><img src="__PUBLIC__/image/icon/spot.png" alt="">我的位置</span>
+					</div>
+					<div class="wrapSearchList wrapSearchDate">
+						<div class="layui-inline">
+							<label class="layui-form-label">
+								<!-- 日期范围 -->
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" class="layui-input" id="testStart" placeholder=" - ">
+							</div>
+					    </div>
+					    <div class="layui-inline">
+							<label class="layui-form-label">
+								<!-- 日期范围 -->
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" class="layui-input" id="testEnd" placeholder=" - ">
+							</div>
+					    </div>
+					    <var><em>共<b id="liveDays">1</b>晚</em></var>
+					</div>
+					<!-- <div class="wrapSearchList restrictBtn"> -->
+					<div class="wrapSearchList wrapSearchListText">
+						<input id="searchInput" type="text" placeholder="房源关键字">
+					</div>
+					<div class="wrapSearchList"><a href="javascript:void(0);" class="searchBtn">开始搜索</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="indexNav">
+			<a href="javascript:void(0);" class="active">精选</a>
+			<a href="javascript:void(0);">公寓</a>
+			<a href="javascript:void(0);">别墅</a>
+			<a href="javascript:void(0);">酒店</a>
+			<a href="javascript:void(0);">旅馆</a>
+			<a href="javascript:void(0);">民宿</a>
+			<a href="{:url('/mite/proprietor/issued')}">发布房源</a>
+			<!-- <a href="javascript:void(0);">精选</a>
+			<a href="javascript:void(0);">精选</a>
+			<a href="javascript:void(0);">精选</a>
+			<a href="javascript:void(0);">精选</a>
+			<a href="javascript:void(0);">精选</a>
+			<a href="javascript:void(0);">精选</a> -->
+		</div>
+		<div class="indexHouse" id="indexHouse">
+
+			<!-- 房源列表 -->
+			<!-- <a href="{:url('/mite/index/detail')}?houseid=1">
+				<div class="houseList">
+					<div class="houseListImg">
+						<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180739508&di=e9c27f1a736174a50dea5ae00901c28e&imgtype=0&src=http%3A%2F%2Fupload.ishaanxi.com%2F2014%2F0807%2F1407379375948.jpg" alt="">
+						<div class="houseImgText">
+							<img src="__PUBLIC__/image/icon/spotw.png" alt="">
+							<span>￥480</span>
+							<var>起/晚</var>
+						</div>
+						<div class="houseHead">
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180954554&di=3d9a70d35e38496c1bd99ddada08b62a&imgtype=0&src=http%3A%2F%2Ftc.sinaimg.cn%2Fmaxwidth.2048%2Ftc.service.weibo.com%2Fp%2Fmmbiz_qpic_cn%2Fd613e49bded2cd5799469646cbca9018.jpg" alt="">
+						</div>
+					</div>
+					<div class="houseListText">
+						<h3>5分钟直达广交会广州塔琶提江景5分钟直达广交会广州塔琶提江景</h3>
+						<div class="houseDescribeText">
+							<span>整套出租</span>
+							<span>3张床铺</span>
+							<span>宜居5人</span>
+						</div>
+						<div class="houseOptionText">
+							<span>优品</span>
+							<span>认证</span>
+							<var>实拍</var>
+							<var>验真</var>
+							<var>免押金</var>
+						</div>
+					</div>
+				</div>
+			</a> -->
+				
+			
+		</div>
+	</div>
+	{include file="mite/index/liuliucommonbottom" /}
+		
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/layui/layui.js"></script>
+    <script src="__PUBLIC__/js/picker.min.js"></script>
+    <script src="__PUBLIC__/js/miteCommon.js"></script>
+    <script src="__PUBLIC__/js/swiper/swiper-4.0.min.js"></script>
+    <script type="text/javascript">
+       	var data=[{text:"1人",value:1},{text:"2人",value:2},{text:"3人",value:3},{text:"4人",value:4},{text:"5人",value:5},{text:"6人",value:6},{text:"7人",value:8},{text:"8人",value:8},{text:"9人",value:9},{text:"不限人数",value:10}];
+
+		var picker = new Picker({
+			data: [data],
+			title: "选择入住人数",
+			selectedIndex: [0],
+		});
+
+		picker.on('picker.select', function (selectedVal, selectedIndex) {
+			$(".restrictBtn").find("em").html(data[selectedIndex]['text']);
+		});
+
+
+		var ajaxData = {
+			"ajaxPage" : 1,
+			"limit" : 6
+		};
+
+		window.onload = function (){
+
+			var swiper = new Swiper('.swiper-container', {
+				slidesPerView: 1,
+				spaceBetween: 30,
+				loop: true,
+				// pagination: {
+				// 	el: '.swiper-pagination',
+				// 	clickable: true,
+				// },
+				// navigation: {
+				// 	nextEl: '.swiper-button-next',
+				// 	prevEl: '.swiper-button-prev',
+				// },
+			});
+
+
+			var bottomLi = document.getElementsByClassName("commonBottom");
+			bottomLi[0].addEventListener("click", function (e){
+				console.log(e);
+				if(e.target.nodeName == "LI" && e.target.className){
+					var className = e.target.className;
+					if(className.indexOf("white") > 0){
+						className = className.replace("white","yellow");
+					}else if(className.indexOf("yellow") > 0){
+						className = className.replace("yellow","white");
+					}
+					e.target.className = className;
+				}else if(e.target.nodeName != "LI"){
+					var className = e.target.parentNode.className;
+					if(className.indexOf("white") > 0){
+						className = className.replace("white","yellow");
+					}else if(className.indexOf("yellow") > 0){
+						className = className.replace("yellow","white");
+					}
+					e.target.parentNode.className = className;
+				}
+			});
+			var bottomP = bottomLi[0].getElementsByTagName("li");
+			for(var i = 0 ; i <= bottomP.length-1 ; i++){
+				var className = bottomP[i].className;
+				if(className.indexOf("white") > 0){
+					className = className.replace("white","yellow");
+				}else if(className.indexOf("yellow") > 0){
+					className = className.replace("yellow","white");
+				}
+				bottomP[i].className = className;
+			}
+
+			$(".searchBtn").on("click",function(){
+				ajaxData['ajaxPage'] = 1;
+				ajaxData['title'] = $("#searchInput").val();
+				$("#wrap").data("canajax","yes");
+				$("#indexHouse").html("");
+				ajaxHouse();
+			});
+
+			// $(".restrictBtn").on("click",function(){
+			// 	picker.show();
+			// });
+
+			
+			ajaxHouse();
+			
+			$(window).on("scroll",function (e){
+				if((window.document.body.scrollHeight - window.document.body.scrollTop - window.screen.height) <= 200){
+						ajaxHouse();
+				}
+			});
+
+			var nowDate = getNowFormatDate();
+			var nextDate = getNowFormatDate(1);
+			// var timerer = setInterval(function (){
+			// 	console.log(nextDate);
+			// 	console.log($("#testEnd").val());
+			// },1000);
+			layui.use(['laydate','layer'], function(){
+				var layer = layui.layer;
+				var laydate = layui.laydate;
+				var myStartDate = nowDate;
+				var myEndDate = nextDate;
+
+				//日期范围开始
+				laydate.render({
+					elem: '#testStart',
+					showBottom: false,
+					theme: '#FD8137',
+					calendar: true,
+					value: nowDate,
+					done: function(value, date, endDate){
+						// console.log(value); //得到日期生成的值，如：2017-08-18
+						// console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+						// console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+						$("#testStart").val(value);
+						var days = countDate();
+						if(!days){
+							layer.msg('入住时间必须早于退房时间', {
+								icon: 8,
+								time: 1000
+							});
+							$("#testStart").val(myStartDate);
+							return false;
+						}
+						myStartDate = value;
+						$("#liveDays").html(days);
+					}
+				});
+
+				//日期范围结束
+				laydate.render({
+					elem: '#testEnd',
+					showBottom: false,
+					theme: '#FD8137',
+					calendar: true,
+					value: nextDate,
+					done: function(value, date, endDate){
+						// console.log(value); //得到日期生成的值，如：2017-08-18
+						// console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+						// console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+						$("#testEnd").val(value);
+						var days = countDate();
+						if(!days){
+							layer.msg('入住时间必须小于退房时间', {
+								icon: 8,
+								time: 1000
+							});
+							$("#testEnd").val(myEndDate);
+							return false;
+						}
+						myEndDate = value;
+						$("#liveDays").html(days);
+					}
+				});
+			});
+
+		};
+
+		function ajaxHouse (){
+
+			if($("#wrap").data("canajax") == "yes"){
+				$("#wrap").data("canajax","no");
+				// $.getJSON(
+				// 	"{:url('Index/houseslidepage')}",
+				// 	ajaxData,
+				// 	function(data){
+				// 		console.log(data);
+				// 	}
+				// );
+				$.ajax({
+					type: "POST",
+					url: "{:url('Index/houseslidepage')}",
+					data: ajaxData,
+					async:false,
+					dataType:"json",
+					success: function(data){
+						console.log(data);
+						if(data.state == 1){
+
+							var dataHouse = data.list;
+							for(var i = 0 ; i < dataHouse.length ; i++){
+								// console.log(dataHouse[i]['imageData']);
+								// console.log(jQuery.isEmptyObject(dataHouse[i]['imageData']));
+							
+								var dataHD = dataHouse[i]
+								//列表大图片模块
+									//列表大图片
+									if(!jQuery.isEmptyObject(dataHD['imageData'])){
+									// if(dataHouse[i]['imageData']){
+										var imageData = "/miteuploads/"+dataHD['imageData'][0]['url'];
+									}else{
+										var imageData ="__PUBLIC__/image/shilituxiang.jpg";
+									}
+									var houseListImgimg = $("<img src='"+imageData+"' alt=''>");
+
+
+
+									//列表大图片价格
+									if(dataHD['leaseperiod'] == 0){
+										var price = dataHD['monthprice'];
+										var period = "月";
+									}else if(dataHD['leaseperiod'] == 1){
+										var price = dataHD['dayprice'];
+										var period = "日";
+									}
+
+									var houseImgText = $("<div class='houseImgText'></div>");
+									var houseImgTextimg = $("<img src='__PUBLIC__/image/icon/spotw.png' alt=''>");
+									var houseImgTextspan = $("<span>￥"+price+"</span>");
+									var houseImgTextvar = $("<var>起/"+period+"</var>");
+									houseImgText.append(houseImgTextimg);
+									houseImgText.append(houseImgTextspan);
+									houseImgText.append(houseImgTextvar);
+
+
+
+									//列表大图片头像
+									// if(dataHouse[i]['imageData']){
+									if(!jQuery.isEmptyObject(dataHD['imageData'])){
+										var houseHeadImg = "/miteuploads/"+dataHD['imageData'][0]['url'];
+									}else{
+										var houseHeadImg ="__PUBLIC__/image/shilituxiang.jpg";
+									}
+
+									var houseHead = $("<div class='houseHead'></div>");
+									var houseHeadimg = $("<img src='"+houseHeadImg+"' alt=''>");
+									houseHead.append(houseHeadimg);
+
+
+
+									// 列表大图片模块合成
+									var houseListImg = $("<div class='houseListImg'></div>");
+									houseListImg.append(houseListImgimg);
+									houseListImg.append(houseImgText);
+									houseListImg.append(houseHead);
+								//列表大图片模块结束
+								//列表文字部分
+									//列表文字标题
+									var houseLT3 = dataHD['title'];
+
+									var houseListTexth3 = $("<h3>"+houseLT3+"</h3>");
+
+
+
+									//列表文字房源简介(黑色字体)
+									var houseDescribeText = $("<div class='houseDescribeText'></div>");
+									if(dataHD['leasetype'] == 0){
+										var houseType = "整套";
+										var houseDescribeTextspan1 = $("<span>"+houseType+"出租</span>");
+										houseDescribeText.append(houseDescribeTextspan1);
+									}else if(dataHD['leasetype'] == 1){
+										var houseType = "单间";
+										var houseDescribeTextspan1 = $("<span>"+houseType+"出租</span>");
+										houseDescribeText.append(houseDescribeTextspan1);
+									}else if(dataHD['leasetype'] == 2){
+										var houseType = "床位";
+										var houseDescribeTextspan1 = $("<span>"+houseType+"出租</span>");
+										houseDescribeText.append(houseDescribeTextspan1);
+									}else if(dataHD['leasetype'] == 3){
+										var houseType = "沙发";
+										var houseDescribeTextspan1 = $("<span>"+houseType+"出租</span>");
+										houseDescribeText.append(houseDescribeTextspan1);
+									}
+									if(dataHD['bed']){
+										
+										var bedInfo = JSON.parse(dataHD['bed']);
+										var houseBedNum = 0;
+										for (var Key in bedInfo){
+											houseBedNum += bedInfo[Key]['num'];
+											// console.log(Key);
+										}
+										// console.log(bedInfo);
+										// console.log(dataHD['bed']);
+										var houseDescribeTextspan2 = $("<span>"+houseBedNum+"张床铺</span>");
+										houseDescribeText.append(houseDescribeTextspan2);
+									}
+									if(dataHD['tenantnum']){
+										var housePeople = dataHD['tenantnum'];
+										var houseDescribeTextspan3 = $("<span>宜居"+housePeople+"人</span>");
+										houseDescribeText.append(houseDescribeTextspan3);
+									}
+									if(dataHD['housearea']){
+										var houseArea = dataHD['housearea'];
+										var houseDescribeTextspan4 = $("<span>"+houseArea+"平方米</span>");
+										houseDescribeText.append(houseDescribeTextspan4);
+									}
+
+
+
+									//列表文字房源简介(黑色字体)
+									var houseOptionTextspan1 = $("<span>优品</span>");
+									var houseOptionTextspan2 = $("<span>认证</span>");
+									var houseOptionTextvar1 = $("<var>实拍</var>");
+									var houseOptionTextvar2 = $("<var>验真</var>");
+									var houseOptionTextvar3 = $("<var>免押金</var>");
+									var houseOptionText = $("<div class='houseOptionText'></div>");
+									houseOptionText.append(houseOptionTextspan1);
+									houseOptionText.append(houseOptionTextspan2);
+									houseOptionText.append(houseOptionTextvar1);
+									houseOptionText.append(houseOptionTextvar2);
+									houseOptionText.append(houseOptionTextvar3);
+
+
+
+									// 列表文字部分合成
+									var houseListText = $("<div class='houseListText'></div>");
+									houseListText.append(houseListTexth3);
+									houseListText.append(houseDescribeText);
+									houseListText.append(houseOptionText);
+								//列表文字部分结束
+								//大模块(仅次于a大)
+									var houseList = $("<div class='houseList'></div>");
+									houseList.append(houseListImg);
+									houseList.append(houseListText);
+								//大模块结束
+								//大a(列表最大循环部分)
+									var houseListId = dataHD['houseid'];
+
+									var aurl = "{:url('/mite/index/detail')}?houseid="+houseListId;
+									var aHouseList = $("<a href="+aurl+"></a>");
+									aHouseList.append(houseList);
+								//大a结束
+								//添加到index页
+								$("#indexHouse").append(aHouseList);
+								//添加到index页结束
+									
+							}
+							var timerAjax = setTimeout(function (){
+								if(data['info'] !== "没有更多了"){
+									ajaxData['ajaxPage'] += 1;
+									$("#wrap").data("canajax","yes");
+								}
+							},1000);
+						}else{
+							$("#wrap").data("canajax","no");
+							layer.msg('网络出错，请再次尝试', {
+								icon: 8,
+								time: 1000
+							});
+						}
+
+					}
+				});
+			}
+		}
+
+    </script>
+</body>
+</html>

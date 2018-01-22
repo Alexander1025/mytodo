@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="UTF-8">
+	<title>
+		小虫
+	</title>
+	<link href="__PUBLIC__/css/mite.css" rel="stylesheet" type="text/css"/>
+	<link href="__PUBLIC__/css/miteIndex.css" rel="stylesheet" type="text/css"/>
+	<link href="__PUBLIC__/js/swiper/swiper-4.0.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+	<div class="wrap reserve">
+
+		<div class="detailTopImg">
+			{empty name="$housedetail['imageData']"}
+				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180739508&di=e9c27f1a736174a50dea5ae00901c28e&imgtype=0&src=http%3A%2F%2Fupload.ishaanxi.com%2F2014%2F0807%2F1407379375948.jpg" alt="">
+			{else /}
+				<div class="swiper-container" style="height: 100vw;">
+				<!-- <div class="swiper-container" style="height: 380px;"> -->
+					<div class="swiper-wrapper">
+						{foreach $housedetail['imageData'] as $voimg} 
+							{empty name="$voimg['scene_id']"}
+								<div class="swiper-slide wrapperimg" data-id="">
+									<img src="/miteuploads/{$voimg['url']}" alt="">
+								</div>
+							{else /}
+								<div class="swiper-slide wrapperimg" data-id="$voimg['scene_id']">
+									<img src="/miteuploads/{$voimg['url']}" alt="">
+								</div>
+							{/empty}
+						{/foreach}
+						<div class="swiper-slide">
+							<img src="__PUBLIC__/image/uiindex.jpg" alt="">
+						</div>
+					</div>
+				</div>
+			{/empty}
+			
+			<span class="back"><</span>
+			<var><img src="__PUBLIC__/image/icon/votew.png" alt=""></var>
+			<div class="houseImgText">
+				<img src="__PUBLIC__/image/icon/votew.png" alt="">
+				<span>
+					{if condition="$housedetail['leaseperiod'] eq 0"}
+						￥{$housedetail['monthprice']}
+					{elseif condition="$housedetail['leaseperiod'] eq 1"/}
+						￥{$housedetail['dayprice']}
+					{/if}
+				</span>
+				<var>
+					{if condition="$housedetail['leaseperiod'] eq 0"}
+						起/月
+					{elseif condition="$housedetail['leaseperiod'] eq 1"/}
+						起/晚
+					{/if}
+				</var>
+			</div>
+			<div class="houseAddressText">
+				<img src="__PUBLIC__/image/icon/spotw.png" alt="">
+				<span><em>{$housedetail['cityName']}</em>·<b>{$housedetail['address']}</b></span>
+			</div>
+		</div>
+
+		<div class="detailTopClass">
+			<div class="houseListText">
+				<div class="houseDescribeText">
+					<span>{if condition="$housedetail['leasetype'] eq 0"}
+							整套出租
+						{elseif condition="$housedetail['leasetype'] eq 1"/}
+							单间出租
+						{elseif condition="$housedetail['leasetype'] eq 2"/}
+							床位出租
+						{elseif condition="$housedetail['leasetype'] eq 3"/}
+							沙发出租
+						{/if}</span>
+					<span><em class='bedInfo'>0</em>张床铺</span>
+					<span>宜居{$housedetail['tenantnum']}人</span>
+				</div>
+				<div class="houseOptionText">
+					<span>优品</span>
+					<span>认证</span>
+					<var>实拍</var>
+					<var>验真</var>
+					<var>免押金</var>
+				</div>
+				<h2>{$housedetail['title']}</h2>
+			</div>
+		</div>
+		<br>
+
+		<div class="panorama">
+			{foreach name="$housedetail['3Ddata']['scene']" item="vo"}
+				<a href="javascript:void(0);" data-href="/site/pano/view/id/{$vo['scene_id']}">
+					<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180739508&di=e9c27f1a736174a50dea5ae00901c28e&imgtype=0&src=http%3A%2F%2Fupload.ishaanxi.com%2F2014%2F0807%2F1407379375948.jpg" alt="">
+					<img class="panoramaImg" src="__PUBLIC__/image/icon/pano.png" alt="">
+					<br>
+					{$vo['name']}
+				</a>
+			{/foreach}
+		</div>
+		<br>
+		
+		<div class="detailBasic">
+			<ul>
+				<li class="detailBasicLi">
+					<img src="__PUBLIC__/image/icon/home123.png" alt="">
+					<span>
+						{if condition="$housedetail['leasetype'] eq 0"}
+							整套出租
+						{elseif condition="$housedetail['leasetype'] eq 1"/}
+							单间出租
+						{elseif condition="$housedetail['leasetype'] eq 2"/}
+							床位出租
+						{elseif condition="$housedetail['leasetype'] eq 3"/}
+							沙发出租
+						{/if}
+					</span>
+				</li>
+				<li>
+					<img src="__PUBLIC__/image/icon/people.png" alt="">
+					<span>宜居<em>{$housedetail['tenantnum']}</em>人</span>
+				</li>
+				<li>
+					<img src="__PUBLIC__/image/icon/bed.png" alt="">
+					<span>共<em class='bedInfo'>0</em>张</span>
+				</li>
+			</ul>
+			<div class="detailBasicText">
+				<span>
+					整套<em>{$housedetail['housearea']}</em>平方
+					<var>{$housedetail['bedroom']}</var>室<var>{$housedetail['livingroom']}</var>厅<var>{$housedetail['bathroom']}</var>卫<var>{$housedetail['kitchen']}</var>厨<var>{$housedetail['veranda']}</var>阳台
+				</span>
+				<span>
+					宜居<b>{$housedetail['tenantnum']}</b>人
+					房客独享整个房间
+				</span>
+				<span id="bedH6">
+					{foreach name="$housedetail['bedArr']" item="vo"}
+						<h6>
+							{if condition="$vo['form'] eq 1"} 
+								<i>双人床</i>&nbsp;
+							{elseif condition="$vo['form'] eq 2"/}
+								<i>单人床</i>&nbsp;
+							{elseif condition="$vo['form'] eq 3"/}
+								<i>双层床</i>&nbsp;
+							{elseif condition="$vo['form'] eq 4"/}
+								<i>沙发</i>&nbsp;
+							{elseif condition="$vo['form'] eq 5"/}
+								<i>榻榻米</i>&nbsp;
+							{elseif condition="$vo['form'] eq 6"/}
+								<i>其他</i>&nbsp;
+							{/if}
+							<q>{$vo['length']}</q>m长&nbsp;
+							<q>{$vo['width']}</q>m宽&nbsp;
+							<q>{$vo['num']}</q>张
+						</h6>
+					{/foreach}
+				</span>
+			</div>
+		</div>
+		
+		<!-- <div class="detailHost">
+			<div class="detailHostImg">
+				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180739508&di=e9c27f1a736174a50dea5ae00901c28e&imgtype=0&src=http%3A%2F%2Fupload.ishaanxi.com%2F2014%2F0807%2F1407379375948.jpg" alt="">
+			</div>
+			<span>张新Allen</span>
+			<var>实名认证·芝麻信用(762)</var>
+		</div> -->
+
+		<div class="detailDescribe">
+			<h3>房源描述</h3>
+			<div class="wrapDescribe">
+				<h4>房源标题<span>{$housedetail['title']}</span></h4>
+				<h4>个性描述<span>{$housedetail['description']}</span></h4>
+				<h4>内部情况<span>{$housedetail['innerinfo']}</span></h4>
+				<h4>交通情况<span>{$housedetail['trafficinfo']}</span></h4>
+				<h4>周边情况<span>{$housedetail['otherinfo']}</span></h4>
+				<h4>使用要求<span>{$housedetail['userule']}</span></h4>
+				<h4>更换被单<span>
+					{if condition="$housedetail['bedsheet'] eq 0"}
+						未知
+					{elseif condition="$housedetail['bedsheet'] eq 1"/}
+						每客一换
+					{elseif condition="$housedetail['bedsheet'] eq 2"/}
+						每日一换
+					{/if}
+				</span></h4>
+				<h4>卫生间<span>
+					{if condition="$housedetail['toilettype'] eq 0"}
+						未知
+					{elseif condition="$housedetail['toilettype'] eq 1"/}
+						共用卫生间
+					{elseif condition="$housedetail['toilettype'] eq 2"/}
+						独立卫生间
+					{/if}
+				</span></h4>
+			</div>
+		</div>
+
+		<div class="detailMap">
+			<h3>房源位置</h3>
+			<span id="mapClose"><img src="__PUBLIC__/image/icon/cancel.png" alt=""></span>
+		</div>
+		<div id="container"></div>
+
+		<div class="detailRentable">
+			<h3>可租日期</h3>
+			<div class="layui-inline" id="test-n1"></div>
+		</div>
+
+		<div class="detailMiddleImg">
+			<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180976923&di=836891b762e04902eda8cd78bd472232&imgtype=0&src=http%3A%2F%2Fwww.sxhpf.com%2Fuploadfile%2F2017%2F0331%2F20170331112827974.jpg" alt="">
+		</div>
+
+		<div class="detailFacility">
+			<h3>配套设施</h3>
+			<div class="detailFacilityUl">
+				<ul class="optionList">
+					{foreach $optionsList as $op}
+						<li data-id="{$op['optionid']}" class="noFacility">
+							<img src="__PUBLIC__/image/icon/{$op['logoname']}" alt="">
+							<span>{$op['name']}</span>
+						</li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+
+		<div class="detailMiddleImg">
+			<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180976923&di=836891b762e04902eda8cd78bd472232&imgtype=0&src=http%3A%2F%2Fwww.sxhpf.com%2Fuploadfile%2F2017%2F0331%2F20170331112827974.jpg" alt="">
+		</div>
+
+		<div class="detailRule">
+			<h3>交易规则</h3>
+			<div class="wrapDescribe">
+				<h4>押金<span>{$housedetail['cashpledge']}</span></h4>
+				<h4>其他费用<span>{$housedetail['additionprice']}</span></h4>
+				<h4>是否接待老人<span>
+					{if condition="$housedetail['elder'] eq 0"}
+						未知
+					{elseif condition="$housedetail['elder'] eq 1"/}
+						是
+					{elseif condition="$housedetail['elder'] eq 2"/}
+						否
+					{/if}
+				</span></h4>
+				<h4>是否接待儿童<span>
+					{if condition="$housedetail['children'] eq 0"}
+						未知
+					{elseif condition="$housedetail['children'] eq 1"/}
+						是
+					{elseif condition="$housedetail['children'] eq 2"/}
+						否
+					{/if}
+				</span></h4>
+				<h4>是否接待外国人<span>
+					{if condition="$housedetail['foreigner'] eq 0"}
+						未知
+					{elseif condition="$housedetail['foreigner'] eq 1"/}
+						是
+					{elseif condition="$housedetail['foreigner'] eq 2"/}
+						否
+					{/if}
+				</span></h4>
+			</div>
+			<br>
+			<div class="wrapDescribe">
+				<h4>入住须知<span>{$housedetail['userule']}</span></h4>
+			</div>
+		</div>
+	</div>
+	<div class="bottom">
+		<a href="{:url('/mite/order/index')}?houseid={$housedetail['houseid']}">立刻预定&nbsp;&nbsp;&nbsp;&nbsp;></a>
+		<a href="{:url('/mite/reserve/index')}?houseid={$housedetail['houseid']}">1></a>
+	</div>
+	
+
+
+	
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/layui/layui.js"></script>
+    <script src="__PUBLIC__/js/picker.min.js"></script>
+    <script src="__PUBLIC__/js/miteCommon.js"></script>
+	<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=BFXj0c60XOW3UUKDlL3nM0i9XPcq72qe&s=1"></script>
+	<script src="__PUBLIC__/js/swiper/swiper-4.0.min.js"></script>
+    <script type="text/javascript">
+    	$(function (){
+    		$(".swiper-slide").on("click",function (){
+
+    		});
+
+    		for(var ii = 0 ; ii <= $(".wrapperimg").length-1 ; ii++){
+    			$(".wrapperimg").eq(ii).find("img")[0].height;
+    			console.log($(".wrapperimg").eq(ii).find("img")[0].naturalWidth);
+    			console.log($(".wrapperimg").eq(ii).find("img")[0].naturalHeight);
+    			var imgNaturalWidth = $(".wrapperimg").eq(ii).find("img")[0].naturalWidth;
+    			var imgNaturalHeight = $(".wrapperimg").eq(ii).find("img")[0].naturalHeight;
+    			if(imgNaturalWidth > imgNaturalHeight){
+    				$(".wrapperimg").eq(ii).find("img").css({
+    					"max-height": "100vw",
+    					"width": "auto",
+						"height": "auto",
+						"position": "absolute",
+						"transform": "translate(-50%,0)",
+						"top": "0",
+						"left": "50%",
+    				});
+    			}else if(imgNaturalWidth < imgNaturalHeight){
+    				$(".wrapperimg").eq(ii).find("img").css({
+    					"max-width": "100vw",
+    					"width": "auto",
+						"height": "auto",
+						"position": "absolute",
+						"transform": "translate(0,-50%)",
+						"top": "50%",
+						"left": "0",
+    				});
+    			}
+    		}
+
+    		$(".panorama").on("click","a",function (){
+    			window.location.href = $(this).data("href");
+    		});
+
+    		var swiper = new Swiper('.swiper-container', {
+				slidesPerView: 1,
+				spaceBetween: 30,
+				loop: true,
+				// pagination: {
+				// 	el: '.swiper-pagination',
+				// 	clickable: true,
+				// },
+				// navigation: {
+				// 	nextEl: '.swiper-button-next',
+				// 	prevEl: '.swiper-button-prev',
+				// },
+			});
+
+    		$(".detailBasic").on("click","li",function (){
+    			$(".detailBasic li").removeClass("detailBasicLi");
+    			$(this).addClass("detailBasicLi");
+    			var indexd = $(this).index();
+    			$(".detailBasicText").find("span").hide().eq(indexd).css("display","block");
+    		});
+
+
+    		if('{$housedetail["options"]}'){
+    			var optionsStr = '{$housedetail["options"]}';
+	    		// var optionsObj = optionsStr.parseJSON(); //由JSON字符串转换为JSON对象
+	    		var optionsObj = eval('(' + optionsStr + ')');
+
+	    		var optionLi = $('.optionList');
+
+	    		$.each(optionsObj,function(i, v){
+
+	    			var index = $('.optionList li[data-id="'+v+'"]');
+
+	    			index.removeClass('noFacility');
+
+	    		});
+    		}
+	    		
+
+			// var bedStr = "{$housedetail['bed']}";
+			// console.log(typeof bedStr);
+			// for(var key in bedStr){
+			// 	var bedH6 = $("<h6></h6>");
+			// 	var h6Text = "";
+			// 	if(bedStr[key]['form'] == 1){
+			// 		var h6I = "双人床";
+			// 	}else if(bedStr[key]['form'] == 2){
+			// 		var h6I = "单人床";
+			// 	}else if(bedStr[key]['form'] == 3){
+			// 		var h6I = "双层床";
+			// 	}else if(bedStr[key]['form'] == 4){
+			// 		var h6I = "沙发";
+			// 	}else if(bedStr[key]['form'] == 5){
+			// 		var h6I = "榻榻米";
+			// 	}else if(bedStr[key]['form'] == 6){
+			// 		var h6I = "其他";
+			// 	}
+			// 	h6Text += "<i>"+h6I+"</i>&nbsp;";
+			// 	h6Text += "&nbsp;<q>"+bedStr[key]['length']+"</q>m长&nbsp;";
+			// 	h6Text += "&nbsp;<q>"+bedStr[key]['width']+"</q>m宽&nbsp;";
+			// 	h6Text += "&nbsp;<q>"+bedStr[key]['num']+"</q>张&nbsp;";
+			// 	bedH6.html(h6Text);
+			// 	$("#bedH6").append(bedH6);
+			// }
+
+			{notempty name="$housedetail['bed']"}
+
+				// console.log({$housedetail['bed']});
+				var houseBedNum = 0;
+				var bedbed = {$housedetail['bed']};
+				for (var Key in bedbed){
+					houseBedNum += bedbed[Key]['num'];
+					// console.log(Key);
+					// console.log(bedbed[Key]);
+				}
+				$(".bedInfo").html(houseBedNum);
+			{/notempty}
+			
+			
+
+
+    		// 百度地图API功能
+			var map = new BMap.Map("container"); // 创建地图实例
+			var point = new BMap.Point({$housedetail['longitude']|default="113.27082"}, {$housedetail['latitude']|default="23.133641"}); // 创建点坐标
+			map.centerAndZoom(point, 16); // 初始化地图，设置中心点坐标和地图级别
+			map.enableScrollWheelZoom();
+			map.addControl(new BMap.NavigationControl()); //添加默认缩放平移控件
+			map.addControl(new BMap.ScaleControl()); //比例尺
+			//map.addControl(new BMap.OverviewMapControl()); //缩略图
+			//map.addControl(new BMap.MapTypeControl()); //地图类型
+			//自定义图标
+			// var myIcon = new BMap.Icon("__PUBLIC__/image/icon/noimg.png", new BMap.Size(20,20));
+			// var marker = new BMap.Marker(point,{icon:myIcon});
+			var marker = new BMap.Marker(point);
+			marker.enableDragging();
+			map.addOverlay(marker);
+
+			map.addEventListener('click', function (e) {
+			    $("#container").css({
+			    	"position": "fixed",
+					"width": "100%",
+					"height": "100%",
+					"top": "0",
+					"left": "0",
+			    });
+			    $("#test-n1").hide();
+			    $(".detailFacilityUl").hide();
+			    $(".bottom").hide();
+			    $("#mapClose").show();
+			});
+
+
+			$("#mapClose").on("click",function (){
+				$("#container").css({
+					"position": "relative",
+					"width": "100%",
+					"height": "80vw",
+					"top": "0",
+					"left": "0",
+				});
+				$("#test-n1").show();
+				$(".detailFacilityUl").show();
+				$(".bottom").show();
+				$("#mapClose").hide();
+			});
+
+    	});
+
+
+	    var nowDate = getNowFormatDate();
+	    layui.use('laydate', function(){
+			var laydate = layui.laydate;
+	    	//直接嵌套显示
+			laydate.render({
+				elem: '#test-n1',
+				position: 'static',
+				showBottom: false,
+				min: nowDate,
+				theme: '#FD8137',
+				calendar: true,
+				mark: {
+					'2017-11-21': '已租',
+					'2017-11-22': '已租',
+					'2017-11-25': '已租',
+					'2017-12-4': '已租',
+					'2017-12-5': '已租',
+					'2017-12-6': '已租',
+					'2017-12-7': '已租',
+					'2017-12-8': '已租',
+					'2017-12-9': '已租',
+					'2017-12-10': '已租',
+					'2017-12-11': '已租',
+					'2017-12-12': '已租',
+					'2017-12-13': '已租',
+					'2017-12-14': '已租',
+					'2017-12-15': '已租',
+					'2017-12-16': '已租',
+					'2017-12-17': '已租',
+					'2017-12-18': '已租',
+					'2017-12-19': '已租',
+					'2017-12-20': '已租',
+					'2017-12-21': '已租',
+				}
+			});
+		});
+    	
+    </script>
+</body>
+</html>

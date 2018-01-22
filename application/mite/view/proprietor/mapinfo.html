@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<title>小虫</title>
+<link href="__PUBLIC__/css/mite.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+body,html{margin:0;padding:0;width:100%;height:100%;font-family:"微软雅黑";font-size:14px}#container{width:100%;height:100%;overflow:hidden}#menu{position:absolute;width:100%;height:5%;z-index:999;margin:50px auto 0;}
+</style>
+</head>
+<body>
+	<header>
+		<em><</em>
+		<span>
+			房源地址
+		</span>
+		<a class="rightBtn mapinfoBtn" href="javascript:void(0);">
+            完成
+        </a>
+	</header>
+<div id="menu" data-url="{:url('Proprietor/updhousedata')}" data-houseid="{$houseData.houseid}">
+	<form name="form1" method="post" action="" id="form1">
+
+		<div class="wrapselectform">
+			<img src="__PUBLIC__/image/icon/noimg.png" alt="">
+			<select name="province_id" id="province_id" class="selectmap" onchange="change_province(this,city_id)">
+				<option selected="selected" value="0">请选择省份</option>
+			</select>
+			<input type=text name=province id=province disabled style=display:none>
+		</div>
+
+
+		<div class="wrapselectform">
+			<img src="__PUBLIC__/image/icon/noimg.png" alt="">
+			<select name="city_id" id="city_id" class="selectmap" onchange="change_city(this,district_id)">
+				<option selected="selected" value="0">请选择城市</option>
+			</select>
+			<input type=text name=city id=city disabled style=display:none>
+		</div>
+
+
+		<div class="wrapselectform">
+			<img src="__PUBLIC__/image/icon/noimg.png" alt="">
+			<select name="district_id" id="district_id" class="selectmap" onchange="change_district(this)">
+				<option value="0">请选择区镇</option>
+			</select>
+			<input type=text name=district id=district disabled style=display:none>
+		</div>
+
+
+		<div class="wrapselectform">
+			<img src="__PUBLIC__/image/icon/noimg.png" alt="">
+			<select name="street_id" id="street_id" class="selectmap" onchange="change_street(this)">
+				<option value="0">请选择街道</option>
+			</select>
+			<input type=text name=street id=street disabled style=display:none>
+		</div>
+		
+		<div class="wrapselectform">
+			<img src="__PUBLIC__/image/icon/noimg.png" alt="">
+			<input id="memo" type=text name="memo" class="textmap" size=60 placeholder="请输入详细地址"/>
+		</div>
+	</form>
+</div>
+
+<div id="container"></div>
+
+
+<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=BFXj0c60XOW3UUKDlL3nM0i9XPcq72qe&s=1"></script>
+<script type="text/javascript">
+	// http://blog.csdn.net/u011089530/article/details/64122382?locationNum=15&fps=1
+	var longitude = {$houseData.longitude|default='108.195397'};
+	var latitude = {$houseData.latitude|default='29.861660'};
+
+	var mapPoint;
+
+
+	var bMap = new BMap.Geolocation();
+	bMap.getCurrentPosition(function(position){
+		console.log(position);
+		mapPoint = position;
+		latitude = position.latitude;
+		longitude = position.longitude;
+		// {if condition="$houseData.longitude neq 0"}
+
+			longitude = {$houseData.longitude};
+			latitude = {$houseData.latitude};
+		// {/if}
+
+		// 百度地图API功能
+		map = new BMap.Map("container"); // 创建地图实例
+		point = new BMap.Point(longitude, latitude); // 创建点坐标
+
+		
+
+		map.centerAndZoom(point, 14); // 初始化地图，设置中心点坐标和地图级别
+		map.enableScrollWheelZoom();
+		map.addControl(new BMap.NavigationControl()); //添加默认缩放平移控件
+		map.addControl(new BMap.ScaleControl()); //比例尺
+		//map.addControl(new BMap.OverviewMapControl()); //缩略图
+		//map.addControl(new BMap.MapTypeControl()); //地图类型
+
+
+		base_url = "<?php echo url("/mite/service", null, ""); ?>/data/id/";
+		pos = {
+		    province: null,
+		    city: null,
+		    district: null,
+		    street: null
+		};
+
+		coder = new BMap.Geocoder();
+
+		// 创建控件实例    
+		var myZoomCtrl = new ZoomControl();
+		// 添加到地图当中    
+		map.addControl(myZoomCtrl);
+		 
+		var customLayer;
+		marker = new BMap.Marker(point);
+		marker.enableDragging();
+		map.addOverlay(marker);
+		marker.addEventListener("dragend", function (e) {
+		    setpoint(e.point, 1);
+		});
+		 
+		map.addEventListener('click', function (e) {
+		    setpoint(e.point, 2);
+		    console.log(e.point);
+		});
+		 
+		var touchStart = null;
+		var touchMove = false;
+		map.addEventListener("touchstart", function (e) {
+		    touchStart = e.pixel;
+		    touchMove = false;
+		});
+		map.addEventListener("touchend", function (e) {
+		    if (Math.abs(touchStart.x - e.pixel.x) <= 10 && Math.abs(touchStart.y - e.pixel.y) <= 10) setpoint(e.point, 3);
+		});
+
+		coder.getLocation(mapPoint, function (rs){
+
+		});
+
+		 
+		obj_province = document.getElementById("province");
+		obj_province_id = document.getElementById("province_id");
+		obj_city = document.getElementById("city");
+		obj_city_id = document.getElementById("city_id");
+		obj_district = document.getElementById("district");
+		obj_district_id = document.getElementById("district_id");
+		obj_street = document.getElementById("street");
+		obj_street_id = document.getElementById("street_id");
+		 
+
+		var provinceval = position['address']['province'].slice(0,-1);
+		obj_province.value = provinceval;
+
+		var city = position['address']['city'].slice(0,-1);
+		obj_city.value = city;
+
+		var district = position['address']['district'].slice(0,-1);
+		obj_district.value = district;
+
+		var street = position['address']['street'].slice(0,-1);
+		obj_street.value = street;
+		 
+		url = base_url + '0.js';
+		jsonRequest(url, obj_province_id, sync_province);
+		 
+
+
+		// {if condition="$houseData.longitude neq 0"}
+
+		longitude = {$houseData.longitude};
+		latitude = {$houseData.latitude};
+		
+	    point.lng = {$houseData.longitude};
+	    point.lat = {$houseData.latitude};
+
+	    marker.setPosition(point);
+	    map.setCenter(point);
+        map.zoomTo(14);
+        // {/if}
+		
+	});
+		
+
+	function findaddr() {
+	    var str = document.form1.memo.value;
+	    var city = document.form1.city.value;
+	    coder.getPoint(str, bingo, city);
+	}
+	 
+	function bingo(data) {
+	    if (data) {
+	        map.setCenter(data);
+	        setpoint(data);
+	    }
+	}
+	 
+	function setpoint(p, t) {
+		longitude = p.lng;
+		latitude = p.lat;
+		
+	    point.lng = p.lng;
+	    point.lat = p.lat;
+	 
+	    marker.setPosition(point);
+	    /*
+	    map.removeOverlay(marker);
+	    marker.point = point;
+	    map.addOverlay(marker);
+	*/
+	    //alert(point.lng + "," + point.lat + ":" + t);
+	    //coder.getLocation(point, echovalue);
+	}
+	 
+	// 定义一个控件类，即function    
+	 
+	function ZoomControl() {
+	    // 设置默认停靠位置和偏移量  
+	    this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+	    this.defaultOffset = new BMap.Size(50, 10);
+	    this.output = null;
+	}
+	// 通过JavaScript的prototype属性继承于BMap.Control   
+	ZoomControl.prototype = new BMap.Control();
+	// 自定义控件必须实现initialize方法，并且将控件的DOM元素返回   
+	// 在本方法中创建个div元素作为控件的容器，并将其添加到地图容器中   
+	ZoomControl.prototype.initialize = function (map) {
+	    // 创建一个DOM元素   
+	    var div = document.createElement("div");
+	    this.output = div;
+	    // 添加文字说明    
+	    div.appendChild(document.createTextNode("放大2级"));
+	    // 设置样式    
+	    div.style.cursor = "pointer";
+	    div.style.border = "1px solid gray";
+	    div.style.backgroundColor = "white";
+	    // 绑定事件，点击一次放大两级    
+	    div.onclick = function (e) {
+	        map.zoomTo(map.getZoom() + 2);
+	    }
+	    // 添加DOM元素到地图中   
+	    map.getContainer().appendChild(div);
+	    // 将DOM元素返回  
+	    return div;
+	}
+	
+
+	var customLayer;
+	function addCustomLayer(keyword) {
+	    if (customLayer) {
+	        map.removeTileLayer(customLayer);
+	    }
+	    customLayer = new BMap.CustomLayer({
+	        geotableId: 136875,
+	        q: '', //检索关键字
+	        tags: '', //空格分隔的多字符串
+	        filter: '' //过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
+	    });
+	    map.addTileLayer(customLayer);
+	    customLayer.addEventListener('hotspotclick', callback);
+	}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 
+	function sync_province(data) {
+	    pos.province = data;
+	    for (var i = 0; i < obj_province_id.options.length; i++) {
+	        if (obj_province.value == obj_province_id.options[i].text) {
+	            obj_province_id.options[i].selected = true;
+	            change_province();
+	            obj_province.disabled = true;
+	            obj_province.style.display = "none";
+	            break;
+	        }
+	    }
+	}
+	 
+	function change_province() {
+	    var objSelect = obj_province_id;
+	    if (objSelect.options[objSelect.selectedIndex].value == "0") {
+	        obj_province.value = "";
+	        obj_province.disabled = false;
+	        //obj_province.style.display = "";
+	        obj_province.focus();
+	    } else {
+	        obj_province.value = objSelect.options[objSelect.selectedIndex].text;
+	        obj_province.disabled = true;
+	        obj_province.style.display = "none";
+	    }
+	 
+	    jump(pos.province, objSelect.options[objSelect.selectedIndex].value);
+	 
+	    resetObj(obj_city_id, obj_city);
+	    resetObj(obj_district_id, obj_district);
+	    resetObj(obj_street_id, obj_street);
+	 
+	    var url = base_url + objSelect.options[objSelect.selectedIndex].value + ".js";
+	    jsonRequest(url, obj_city_id, sync_city);
+	}
+	 
+	function sync_city(data) {
+	    pos.city = data;
+	    for (var i = 0; i < obj_city_id.options.length; i++) {
+	        if (obj_city.value == obj_city_id.options[i].text) {
+	            obj_city_id.options[i].selected = true;
+	            change_city();
+	            obj_city.disabled = true;
+	            obj_city.style.display = "none";
+	            break;
+	        }
+	    }
+	}
+	 
+	function change_city() {
+	    var objSelect = obj_city_id;
+	    if (objSelect.options[objSelect.selectedIndex].value == "0") {
+	        obj_city.value = "";
+	        obj_city.disabled = false;
+	        //obj_city.style.display = "";
+	        obj_city.focus();
+	    } else {
+	        obj_city.value = objSelect.options[objSelect.selectedIndex].text;
+	        obj_city.disabled = true;
+	        obj_city.style.display = "none";
+	    }
+	 
+	    jump(pos.city, objSelect.options[objSelect.selectedIndex].value);
+	 
+	    resetObj(obj_district_id, obj_district);
+	    resetObj(obj_street_id, obj_street);
+	 
+	    var url = base_url + objSelect.options[objSelect.selectedIndex].value + ".js";
+	    jsonRequest(url, obj_district_id, sync_district);
+	}
+	 
+	function sync_district(data) {
+	    pos.district = data;
+	    for (var i = 0; i < obj_district_id.options.length; i++) {
+	        if (obj_district.value == obj_district_id.options[i].text) {
+	            obj_district_id.options[i].selected = true;
+	            change_district();
+	            obj_district.disabled = true;
+	            obj_district.style.display = "none";
+	            break;
+	        }
+	    }
+	}
+	 
+	function change_district() {
+	    var objSelect = obj_district_id;
+	    if (objSelect.options[objSelect.selectedIndex].value == "0") {
+	        obj_district.value = "";
+	        obj_district.disabled = false;
+	        //obj_district.style.display = "";
+	        obj_district.focus();
+	    } else {
+	        obj_district.value = objSelect.options[objSelect.selectedIndex].text;
+	        obj_district.disabled = true;
+	        obj_district.style.display = "none";
+	    }
+	 
+	    jump(pos.district, objSelect.options[objSelect.selectedIndex].value);
+	 
+	    resetObj(obj_street_id, obj_street);
+	 
+	    var url = base_url + objSelect.options[objSelect.selectedIndex].value + ".js";
+	    jsonRequest(url, obj_street_id, sync_street);
+	}
+	 
+	function sync_street(data) {
+	    pos.street = data;
+	    for (var i = 0; i < obj_street_id.options.length; i++) {
+	        if (obj_street.value == obj_street_id.options[i].text) {
+	            obj_street_id.options[i].selected = true;
+	            obj_street.disabled = true;
+	            obj_street.style.display = "none";
+	            break;
+	        }
+	    }
+	}
+	 
+	function change_street() {
+	    var objSelect = obj_street_id;
+	    if (objSelect.options[objSelect.selectedIndex].value == "0") {
+	        obj_street.value = "";
+	        obj_street.disabled = false;
+	        //obj_street.style.display = "";
+	        obj_street.focus();
+	    } else {
+	        obj_street.value = objSelect.options[objSelect.selectedIndex].text;
+	        obj_street.disabled = true;
+	        obj_street.style.display = "none";
+	    }
+	 
+	    jump(pos.street, objSelect.options[objSelect.selectedIndex].value);
+	 
+	}
+	 
+	function jump(data, id) {
+	    for (var i = 0; i < data.length; i++) {
+	        if (id == data[i].id) {
+	            var lng = parseFloat(data[i].longitude);
+	            var lat = parseFloat(data[i].latitude);
+	            var lev = parseInt(data[i].level);
+	 
+	            if (lng && lat && lev) {
+	                setpoint({
+	                    lng: lng,
+	                    lat: lat
+	                }, 4);
+	                var p = new BMap.Point(lng, lat);
+	                map.setCenter(p);
+	                map.zoomTo(14);
+	            }
+	            break;
+	        }
+	    }
+	}
+	 
+	function resetObj(objSelect, objInput) {
+	    objSelect.options.length = 1;
+	    objSelect.options[0].selected = true;
+	    objInput.disabled = false;
+	    //objInput.style.display = "";
+	 
+	    objSelect.length = 0;
+	    var option = document.createElement("OPTION");
+	    option.appendChild(document.createTextNode("--请选择--"));
+	    option.value = 0;
+	    objSelect.appendChild(option);
+	}
+	 
+	
+	 
+	function echovalue(data) {
+	    if (data) {
+	        txt = data.address;
+	    } else {
+	        txt = obj_province.value + " " + obj_city.value + " " + obj_district.value + " " + obj_street.value;
+	    }
+	    document.form1.memo.value = txt;
+	}
+	 
+	 
+	function jsonSelect(data, objSelect, func) {
+	    objSelect.options.length = data.length + 1;
+	    for (var i = 0; i < data.length; i++) {
+	        var id = data[i].id;
+	        var name = data[i].name;
+	        objSelect.options[i + 1].text = name;
+	        objSelect.options[i + 1].value = id;
+	    }
+	 
+	    if (func) {
+	        func(data);
+	    }
+	}
+	 
+	function jsonRequest(url, objSelect, func) {
+	    $.ajax({
+	        url: url,
+	        dataType: "json",
+	        async:false,
+	        success: function (data) {
+	            jsonSelect(data, objSelect, func);
+	        }
+	    });
+	}
+
+
+	// var time = setInterval(function (){
+	// 	console.log(longitude);
+	// 	console.log(latitude);
+	// },1000);
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/mlayer/layer.js"></script>
+<script src="__PUBLIC__/js/miteCommon.js"></script>
+</body>
+</html>

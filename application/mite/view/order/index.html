@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="UTF-8">
+	<title>
+		小虫
+	</title>
+	<link href="__PUBLIC__/css/mite.css" rel="stylesheet" type="text/css"/>
+	<link href="__PUBLIC__/css/miteIndex.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+	<div class="wrap order">
+
+		<div class="detailTopImg">
+			<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511180739508&di=e9c27f1a736174a50dea5ae00901c28e&imgtype=0&src=http%3A%2F%2Fupload.ishaanxi.com%2F2014%2F0807%2F1407379375948.jpg" alt="">
+			<span class="back"><</span>
+		</div>
+		<div class="wrapOrderList">
+			<h4>入住时段</h4>
+			<ul class="orderListUl">
+				<li>
+					<img src="__PUBLIC__/image/icon/calender.png" alt="">
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" id="test1" placeholder="入住时间">
+						</div>
+				    </div>
+				    <!-- <span>入住时间</span> -->
+				</li>
+				<li>
+					<img src="__PUBLIC__/image/icon/calender.png" alt="">
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" id="test2" placeholder="离开时间">
+						</div>
+				    </div>
+				    <!-- <span>离开时间</span> -->
+				</li>
+			</ul>
+		</div>
+		<div class="wrapOrderList">
+			<h4>预定数量</h4>
+			<div class="orderList">
+				<h3><em>1</em>间</h3>
+			</div>
+		</div>
+		<!-- <div class="wrapOrderList">
+			<h4>入住人信息</h4>
+			
+		</div> -->
+		<!-- <div class="wrapOrderList">
+			<h4>预订人信息</h4>
+			<div class="orderList">
+				<span>真实姓名:</span>
+				<var>水电费</var>
+			</div>
+			<div class="orderList">
+				<span>手机:</span>
+				<var>+86 12345678978</var>
+			</div>
+		</div> -->
+		<div class="read">
+            <!-- <input class="readInput" name="read" type="checkbox" value="" /> -->
+            <input class="chk_1" id="checkbox_a1" name="asd" type="checkbox"/>
+            <label for="checkbox_a1">
+            </label>
+            我已阅读并同意
+            <a href="//www.xiniuw.com/site/News/newsDetail/typeid/99/newsid/1300">
+                《房客规则》
+            </a>
+            <a href="//www.xiniuw.com/site/News/newsDetail/typeid/99/newsid/1304">
+                《未成年人入住规则》
+            </a>
+            及房东制定的规则
+        </div>
+	</div>
+	<div class="wrapOrderBottom">
+		<div class="orderLeft">
+			订单总额:
+		</div>
+		<div class="orderRigth">
+			提交订单
+		</div>
+	</div>
+	
+
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/layui/layui.js"></script>
+    <script src="__PUBLIC__/js/picker.min.js"></script>
+    <script src="__PUBLIC__/js/miteCommon.js"></script>
+    <script type="text/javascript">
+    	$(function (){
+    		$(".orderRigth").on("click",function (){
+    			if(!$("#checkbox_a1")[0].checked){
+    				alert("请先阅读并同意《规则》");
+					return false;
+    			}
+    			alert("提交成功");
+    			var timer = setTimeout(function(){
+    				window.location.href = "{:url('/mite/order/information')}";
+    			},2000);
+    		});
+    	});
+
+
+	    var nowDate = getNowFormatDate();
+	    layui.use('laydate', function(){
+			var laydate = layui.laydate;
+			//常规用法
+			laydate.render({
+				elem: '#test1',
+				showBottom: false,
+				min: nowDate,
+				calendar: true,
+				theme: '#FD8137',
+			});
+
+			//常规用法
+			laydate.render({
+				elem: '#test2',
+				showBottom: false,
+				min: nowDate,
+				calendar: true,
+				theme: '#FD8137',
+			});
+
+	    	//直接嵌套显示
+			laydate.render({
+				elem: '#test-n1',
+				position: 'static',
+				showBottom: false,
+				min: nowDate,
+				theme: '#FD8137',
+				calendar: true,
+				mark: {
+					'2017-11-21': '已租',
+					'2017-11-22': '已租',
+					'2017-11-25': '已租',
+				}
+			});
+		});
+    	
+    </script>
+</body>
+</html>

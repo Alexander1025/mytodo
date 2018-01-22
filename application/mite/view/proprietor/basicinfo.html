@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>小虫</title>
+	<link href="__PUBLIC__/css/mite.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<em><</em>
+		<span>
+			房源信息
+		</span>
+	</header>
+	<div class="wrap" id="wrapInput" data-houseid="{$houseData.houseid}" data-ajaxurl="{:url('Proprietor/updhousedata')}">
+		<div class="inputElement">
+			<div class="inputList inputPopup" data-name="housearea">
+				<div class="inputRight">
+					<em>
+						<var class="unit" 
+							{notempty name="houseData.housearea"}
+								style="display: inline;" 
+							{/notempty}
+						>
+							<span class="hint">{$houseData.housearea}</span>
+							m&sup2;
+						</var>
+						>  <!--">" 向右箭头-->
+					</em>
+				</div>
+				<span>房屋面积</span>
+				<var>请输入房屋的使用面积</var>
+				<div class="hiddenInput">
+					<span class="inputTitle">
+						请输入房屋面积
+					</span>
+					<br>
+					<input type="number" class="inputText" value="{$houseData.housearea}">
+					<var class="inputTips">
+						&nbsp;m&sup2;
+					</var>
+				</div>
+			</div>
+
+			<div class="inputList inputSelect">
+				<div class="inputRight">
+					<em class="tipText">></em>
+				</div>
+				<span>房屋户型</span>
+				<var>请选择整套房屋的户型</var>
+				<div class="hiddenInput">
+					<div class="titleInput">
+						
+					</div>
+					<div class="sortInput">
+						{$houseData.bedroom},{$houseData.livingroom},{$houseData.bathroom},{$houseData.kitchen},{$houseData.veranda}
+					</div>
+					<div class="wrapSelect">
+						<select data-name="bedroom">
+							<option value="0">0室</option>
+							<option value="1">1室</option>
+							<option value="2">2室</option>
+							<option value="3">3室</option>
+							<option value="4">4室</option>
+							<option value="5">5室</option>
+							<option value="6">6室</option>
+							<option value="7">7室</option>
+							<option value="8">8室</option>
+							<option value="9">9室</option>
+							<option value="10">10室</option>
+						</select>
+						<select data-name="livingroom">
+							<option value="0">0厅</option>
+							<option value="1">1厅</option>
+							<option value="2">2厅</option>
+							<option value="3">3厅</option>
+							<option value="4">4厅</option>
+							<option value="5">5厅</option>
+							<option value="6">6厅</option>
+							<option value="7">7厅</option>
+							<option value="8">8厅</option>
+							<option value="9">9厅</option>
+							<option value="10">10厅</option>
+						</select>
+						<select data-name="bathroom">
+							<option value="0">0卫</option>
+							<option value="1">1卫</option>
+							<option value="2">2卫</option>
+							<option value="3">3卫</option>
+							<option value="4">4卫</option>
+							<option value="5">5卫</option>
+							<option value="6">6卫</option>
+							<option value="7">7卫</option>
+							<option value="8">8卫</option>
+							<option value="9">9卫</option>
+							<option value="10">10卫</option>
+						</select>
+						<select data-name="kitchen">
+							<option value="0">0厨</option>
+							<option value="1">1厨</option>
+							<option value="2">2厨</option>
+							<option value="3">3厨</option>
+							<option value="4">4厨</option>
+							<option value="5">5厨</option>
+							<option value="6">6厨</option>
+							<option value="7">7厨</option>
+							<option value="8">8厨</option>
+							<option value="9">9厨</option>
+							<option value="10">10厨</option>
+						</select>
+						<select data-name="veranda">
+							<option value="0">0阳台</option>
+							<option value="1">1阳台</option>
+							<option value="2">2阳台</option>
+							<option value="3">3阳台</option>
+							<option value="4">4阳台</option>
+							<option value="5">5阳台</option>
+							<option value="6">6阳台</option>
+							<option value="7">7阳台</option>
+							<option value="8">8阳台</option>
+							<option value="9">9阳台</option>
+							<option value="10">10阳台</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="inputList inputPopup" data-name="tenantnum">
+				<div class="inputRight">
+					<em>
+						<var class="unit"
+							{notempty name="houseData.tenantnum"}
+								style="display: inline;" 
+							{/notempty}
+						>
+							<span class="hint">{$houseData.tenantnum}</span>
+							人
+						</var>
+						> <!--">" 向右箭头-->
+					</em>
+				</div>
+				<span>宜居人数</span>
+				<var>请输入人数</var>
+				<div class="hiddenInput">
+					<span class="inputTitle">
+						请输入人数
+					</span>
+					<br>
+					<input type="number" class="inputText" value="{$houseData.tenantnum}">
+					<var class="inputTips">
+						人
+					</var>
+				</div>
+			</div>
+
+			<div class="inputList inputSelect" data-tip="yes">
+				<div class="inputRight">
+					<em class="tipText">></em>
+				</div>
+				<span>被单更换</span>
+				<var class="inputSelectTip">
+					{notempty name="houseData.bedsheet"}
+						已选择
+					{else /}
+						请选择
+					{/notempty}
+				</var>
+				<div class="hiddenInput">
+					<div class="titleInput">
+
+					</div>
+					<div class="sortInput">
+						{notempty name="houseData.bedsheet"}
+							{$houseData.bedsheet-1}
+						{else /}
+							0
+						{/notempty}
+					</div>
+					<div class="wrapSelect">
+						<select data-name="bedsheet">
+							<option value="1">每客一换</option>
+							<option value="2">每日一换</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="inputElement">
+			<div class="inputList inputSelect" data-tip="yes">
+				<div class="inputRight">
+					<em class="tipText">></em>
+				</div>
+				<span>卫生间</span>
+				<var class="inputSelectTip">
+					{notempty name="houseData.toilettype"}
+						已选择
+					{else /}
+						请选择
+					{/notempty}
+				</var>
+				<div class="hiddenInput">
+					<div class="titleInput">
+						
+					</div>
+					<div class="sortInput">
+						{notempty name="houseData.toilettype"}
+							{$houseData.toilettype-1}
+						{else /}
+							0
+						{/notempty}
+					</div>
+					<div class="wrapSelect">
+						<select data-name="toilettype">
+							<option value="1">公用卫生间</option>
+							<option value="2">独立卫生间</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<!-- <script type="text/javascript" src="__PUBLIC__/js/mlayer/layerRead.js"></script> -->
+	<script type="text/javascript" src="__PUBLIC__/js/mlayer/layer.js"></script>
+	<script src="__PUBLIC__/js/picker.min.js"></script>
+	<script src="__PUBLIC__/js/miteCommon.js"></script>
+</body>
+</html>

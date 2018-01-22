@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+            <title>
+                小虫
+            </title>
+            <link href="__PUBLIC__/css/mite.css" rel="stylesheet" type="text/css">
+                <style type="text/css">
+                    .inputList{
+            padding-left: 0;
+        }
+                </style>
+            </link>
+        </meta>
+    </head>
+    <body>
+        <header>
+            <em>
+                <
+            </em>
+            <span>
+                出租类型
+            </span>
+        </header>
+        <div class="wrap">
+            <div class="bigTop">
+                <span class="text">
+                    您想要发布哪种类型？
+                </span>
+            </div>
+            <div class="inputElement selectLeaseType">
+                <div class="inputList" data-leasetype="0">
+                    <div class="inputLeft">
+                        <img alt="" src="__PUBLIC__/image/icon/home123.png">
+                        
+                    </div>
+                    <div class="inputRight">
+                        <em>
+                            >
+                        </em>
+                    </div>
+                    <span>
+                        日租
+                    </span>
+                    <var>
+                        客房独享整套房屋
+                    </var>
+                </div>
+                <div class="inputList" data-leasetype="1">
+                    <div class="inputLeft">
+                        <img alt="" src="__PUBLIC__/image/icon/door-01.png">
+                        
+                    </div>
+                    <div class="inputRight">
+                        <em>
+                            >
+                        </em>
+                    </div>
+                    <span>
+                        月租
+                    </span>
+                    <var>
+                        整套房屋内的一个单独房间
+                    </var>
+                </div>
+            </div>
+        </div>
+        <script src="__PUBLIC__/js/jquery-3.1.0.min.js">
+        </script>
+        <script src="__PUBLIC__/js/miteCommon.js">
+        </script>
+        <script>
+            var inputList = $('.selectLeaseType .inputList');
+
+    // 点击选择发布房源的出租类型
+    inputList.on('click',function(){
+
+        var data = {};
+        var leasetype = $(this).data('leasetype');
+        data.leasetype = leasetype;
+
+        $.post("{:url('Proprietor/addrenttype')}",data,function(ret){
+            //ret.state状态,ret.info信息,ret.data数据
+            //添加成功ret.state==1
+            if(ret.state == 1){
+                var houseid = ret.data.houseid;
+                window.location.href = "{:url('Proprietor/rentinfo')}?houseid="+houseid;
+            
+            //添加失败ret.state==0
+            }else{
+                alert(ret.info);
+            }
+        });
+
+    });
+        </script>
+    </body>
+</html>

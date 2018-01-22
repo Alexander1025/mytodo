@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>房源照片上传</title>
+    {include file="imguploadtemp/imguploadcss" /}
+</head>
+<style type="text/css">
+    #uploader .statusBar .btns{top:50px;left:10px}#uploader .statusBar{height:110px}#wrapper{margin:5vw;margin-top:60px}#uploader .queueList{margin:5vw}#uploader .filelist li{margin:0;margin-bottom:5vw;width:78vw;height:78vw;float:left}#uploader .filelist li:nth-of-type(2n){float:right}#uploader .filelist li p.imgWrap{width:78vw;height:78vw}#uploader .filelist{overflow:hidden}header{position:fixed;top:0;left:0;width:100%;text-align:center;border-bottom:1px solid #C4C4C4;z-index:100;background-color:white;z-index:100}header em{font-weight:bolder;font-size:22px;display:inline-block;line-height:40px;font-style:normal;position:absolute;top:0;left:20px}header span{font-size:18px;line-height:40px}header em{font-weight:normal;font-family: simhei;}
+</style>
+<body>
+    <header>
+        <em><</em>
+        <span>
+            图片上传
+        </span>
+    </header>
+    <div id="wrapper">
+        <div id="container">
+            <!--头部，相册选择和格式选择-->
+            <div id="uploader">
+                <div class="queueList">
+                    <div id="dndArea" class="placeholder">
+                        <div id="filePicker"></div>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="statusBar" style="display:none;">
+                    <div class="progress">
+                        <span class="text">0%</span>
+                        <span class="percentage"></span>
+                    </div><div class="info"></div>
+                    <br>
+                    <div class="btns">
+                        <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {include file="imguploadtemp/imguploadjs" /}
+    <script src="__PUBLIC__/js/miteCommon.js">
+    </script>
+</body>
+</html>

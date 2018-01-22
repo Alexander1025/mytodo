@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>小虫</title>
+	<link href="__PUBLIC__/css/mite.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<em><</em>
+		<span>
+			房源描述
+		</span>
+	</header>
+	<div class="wrap" id="wrapInput" data-houseid="{$houseData.houseid}" data-ajaxurl="{:url('Proprietor/updhousedata')}">
+		<div class="inputElement">
+			<div class="inputList inputPopupBig" data-name="title">
+				<div class="inputRight">
+					<em>
+						<var class="unit" 
+							{notempty name="houseData.title"}
+								style="display: inline;" 
+							{/notempty}
+						>
+							已填写
+						</var>
+						>  <!--">" 向右箭头-->
+					</em>
+				</div>
+				<span>房源标题</span>
+				<var>请输入房间的房源标题</var>
+				<div class="hiddenInput">
+					<div class="title">
+						房源标题
+					</div>
+					<div class="hiddenInputBig">
+						<textarea name="" id="" class="inputTextarea" placeholder="请填写房源信息">{$houseData.title}</textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="inputList inputPopupBig" data-name="description">
+				<div class="inputRight">
+					<em>
+						<var class="unit" 
+							{notempty name="houseData.description"}
+								style="display: inline;" 
+							{/notempty}
+						>
+							已填写
+						</var>
+						>  <!--">" 向右箭头-->
+					</em>
+				</div>
+				<span>个性描述</span>
+				<var>请输入房间的个性描述</var>
+				<div class="hiddenInput">
+					<div class="title">
+						个性描述
+					</div>
+					<div class="hiddenInputBig">
+						<textarea name="" id="" class="inputTextarea" placeholder="请填写个性描述">{$houseData.description}</textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="inputList inputPopupBig" data-name="innerinfo">
+				<div class="inputRight">
+					<em>
+						<var class="unit" 
+							{notempty name="houseData.innerinfo"}
+								style="display: inline;" 
+							{/notempty}
+						>
+							已填写
+						</var>
+						>  <!--">" 向右箭头-->
+					</em>
+				</div>
+				<span>内部情况</span>
+				<var>请输入房间的内部情况</var>
+				<div class="hiddenInput">
+					<div class="title">
+						内部情况
+					</div>
+					<div class="hiddenInputBig">
+						<textarea name="" id="" class="inputTextarea" placeholder="请填写内部情况">{$houseData.innerinfo}</textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="inputElement">
+			<div class="inputList inputPopupBig" data-name="trafficinfo">
+				<div class="inputRight">
+					<em>
+						<var class="unit" 
+							{notempty name="houseData.trafficinfo"}
+								style="display: inline;" 
+							{/notempty}
+						>
+							已填写
+						</var>
+						>  <!--">" 向右箭头-->
+					</em>
+				</div>
+				<span>交通情况（选填）</span>
+				<var>请输入交通情况（选填）</var>
+				<div class="hiddenInput">
+					<div class="title">
+						交通情况
+					</div>
+					<div class="hiddenInputBig">
+						<textarea name="" id="" class="inputTextarea" placeholder="请填写交通情况（选填）">{$houseData.trafficinfo}</textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="inputList inputPopupBig" data-name="otherinfo">
+				<div class="inputRight">
+					<em>
+						<var class="unit" 
+							{notempty name="houseData.otherinfo"}
+								style="display: inline;" 
+							{/notempty}
+						>
+							已填写
+						</var>
+						>  <!--">" 向右箭头-->
+					</em>
+				</div>
+				<span>周边情况（选填）</span>
+				<var>请输入周边情况（选填）</var>
+				<div class="hiddenInput">
+					<div class="title">
+						周边情况
+					</div>
+					<div class="hiddenInputBig">
+						<textarea name="" id="" class="inputTextarea" placeholder="请填写周边情况（选填）">{$houseData.otherinfo}</textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/mlayer/layer.js"></script>
+	<script src="__PUBLIC__/js/picker.min.js"></script>
+	<script src="__PUBLIC__/js/miteCommon.js"></script>
+</body>
+</html>

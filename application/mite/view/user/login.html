@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>小虫用户登录</title>
+	<link href="__PUBLIC__/css/common/body.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/css/common/z.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="__PUBLIC__/js/jquery/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer_mobile.js"></script>
+    <style type="text/css">
+		body,html{
+			background-color: #398dcc;
+		}
+		.wrapMain{
+			width: 80%;
+			height: 80%;
+			z-index: 1;
+
+			position: fixed;
+			top: 50%; 
+			left: 50%;
+			-webkit-transform: translate(-50% , -45%);
+			-ms-transform: translate(-50% , -45%);
+			-o-transform: translate(-50% , -45%);
+			transform: translate(-50% , -45%);
+
+			background: url("__PUBLIC__/image/loginMainBg.jpg") bottom center no-repeat;
+			background-size: 100% 30%;
+			background-color: white;
+		}
+		.logoImg{
+			z-index: 2;
+			position: fixed;
+			left: 50%;
+			top: 15%;
+			-webkit-transform: translate(-50% , -50%);
+			-ms-transform: translate(-50% , -50%);
+			-o-transform: translate(-50% , -50%);
+			transform: translate(-50% , -50%);
+			width: 25vw;
+			height: 25vw;
+			border-radius: 50%;
+			background-color: white;
+
+			box-shadow: 0px 0px 3px 5px rgba(57, 141, 204, 0.3) , 0px 0px 3px 10px rgba(57, 141, 204, 0.20) , 0 0 3px 15px rgba(57, 141, 204, 0.08), 0 0 3px 15px rgba(255, 255, 255, 0.2);
+			/*box-shadow: 0px 0px 30px 10px rgba(57, 141, 204, 0.8);*/
+
+			overflow: hidden;
+		}
+		.logoImg img{
+			width: 100%;
+			height: 100%;
+		}
+		.wrapMain>div{
+			width: 100%;
+		}
+		.topText{
+			margin-top: 25vw;
+			text-align: center;
+		}
+		.topText span{
+			font-size: 20px;
+			font-family: FZShuTi ,STXingkai;
+			color: #398DCC;
+		}
+		.topText img{
+			width: 15vw;
+		}
+		.topText span, .topText img{
+			vertical-align: middle;
+		}
+		.inputDiv,.verification{
+			text-align: center;
+		}
+		.inputWrap{
+			text-align: left;
+			width: 75%;
+			display: inline-block;
+			border-radius: 4vw;
+			height: 8vw;
+			border: 1px solid #ccc;
+			margin-top: 8vw;
+			vertical-align: middle;
+			box-sizing:border-box;
+		}
+		.inputWrap img{
+			width: 5vw;
+			height: 5vw;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.inputWrap span{
+			height: 4vw;
+			width: 0;
+			border-left: 1px solid #ccc;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.inputWrap input{
+			border: none;
+			display: inline-block;
+			vertical-align: middle;
+			width: 20vw;
+		}
+		.inputWrap em{
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 8vw;
+		}
+		.bottomWrap{
+			text-align: center;
+			box-sizing:border-box;
+		}
+		.bottomWrap a{
+			display: inline-block;
+			width: 75%;
+			line-height: 8vw;
+			margin-top: 8vw;
+			border-radius: 4vw;
+			background-color: #398DCC;
+			color: white;
+			font-family: FZShuTi ,STXingkai;
+			letter-spacing:1vw;
+		}
+		.bottomWrap span{
+			font-size: 12px;
+		}
+		.wrapBtn{
+			text-align: left;
+			width: 75%;
+			display: inline-block;
+			border-radius: 4vw;
+			height: 8vw;
+			border: 1px solid #ccc;
+			margin-top: 8vw;
+			vertical-align: middle;
+			box-sizing:border-box;
+		}
+		.wrapBtn img{
+			width: 5vw;
+			height: 5vw;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.wrapBtn span{
+			height: 4vw;
+			width: 0;
+			border-left: 1px solid #ccc;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.wrapBtn input{
+			border: none;
+			display: inline-block;
+			vertical-align: middle;
+			width: 15vw;
+		}
+		.wrapBtn em{
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 8vw;
+		}
+		.wrapBtn a{
+			display: inline-block;
+			vertical-align: middle;
+			text-align: center;
+			color: white;
+			width: 25vw;
+			white-space : nowrap;
+			line-height: 7.9vw;
+			background-color: #398DCC;
+			border-radius: 4vw;
+			float: right;
+		}
+		#select{
+			float: right;
+			background: #398DCC;
+			-moz-border-radius: 4vw;
+			-webkit-border-radius: 4vw;
+			border-radius: 4vw;
+			padding: 0 10px;
+			position: relative;
+			font-size: 1.1rem;
+			color: #fff;
+			width: 25vw;
+			font-size: 0.9rem;
+			height: 7.9vw;
+			cursor: pointer;
+			line-height: 7.9vw;
+			appearance:none;
+			-moz-appearance:none;
+			-webkit-appearance:none;
+		}
+	</style>
+</head>
+<body>
+	<div class="logoImg">
+		<img src="__PUBLIC__/image/icon/mite/icon/loginLogo.jpg" alt="">
+	</div>
+	<div class="wrapMain">
+		<div class="topText">
+			<img src="__PUBLIC__/image/titleBG1.png" alt="">
+			<span>登录</span>
+			<img src="__PUBLIC__/image/titleBG2.png" alt="">
+		</div>
+		{if condition="$wrongOperation neq 0 "}
+			<div align="center" style="color: red;" >{$errorMsg}</div><br />
+		{/if}
+		<form id="loginform" name="loginform" method="post" action="{:url('login/login/index')}">
+			<div class="inputDiv">
+				<div class="inputWrap">
+					<em>&nbsp;</em>
+					<img src="__PUBLIC__/image/acount.svg" alt="">
+					<span></span>
+					<input type="number" name="strMobile" id="strMobile" placeholder="手机号码">
+					<select name="area_code" id="select">
+						<option value="86" selected="selected" >中国大陆</option>
+						<option value="852">中国香港</option>
+						<option value="853">中国澳门</option>
+						<option value="886">中国台湾</option>
+						<option value="1">美国</option>
+					</select>
+				</div>
+			</div>
+			<div class="inputDiv">
+				<div class="wrapBtn">
+					<em>&nbsp;</em>
+					<img src="__PUBLIC__/image/passwordLeft.svg" alt="">
+					<span></span>
+					<input type="number" name="strCode" id="strCode" placeholder="验证码">
+					<a href="javascript:void(0);" id="acquireVer">获取验证码</a>
+				</div>
+			</div>
+			<div class="bottomWrap">
+				<a href="javascript:void(0);" id="loginBtn">登陆</a>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+		var isWait = 1;
+		$(function (){
+			$("#acquireVer").on("click",function (){
+				if(!checkVar()){
+					return false;
+				}
+				$.ajax({
+					type: "POST",
+					url: "{:url('mite/user/getLoginPhoneCode');}",
+					// url: "{$server}/index.php/Login/Index/sendsms/area_code/" + $("#select").val() + "/mobile/" + $("#strMobile").val(),
+					data:{"userphone":$("#strMobile").val(),"area_code":$("#select").val()},
+					dataType:'JSON',
+					success: function(data){
+						layer.open({
+							content: data.msg
+							,skin: 'msg'
+							,time: 2 //2秒后自动关闭
+						});
+						if(data.code != 0){
+							return false;
+						}
+						if(isWait == 1){
+							isWait = 2;
+							$("#acquireVer").css({
+								"background-color":"#a9a9a9"
+							});
+							var figure = 120;
+							$("#acquireVer").html(figure);
+							var timer = setInterval(function (){
+								figure --;
+								if(figure <= 0){
+									isWait = 1;
+									$("#acquireVer").html("发送失败");
+									layer.open({
+										content: '短信发送失败，请刷新页面'
+										,skin: 'msg'
+										,time: 2 //2秒后自动关闭
+									});
+									clearInterval(timer);
+								}
+								$("#acquireVer").html(figure);
+							},1000);
+						}
+					}
+				});
+			});
+
+			$("#loginBtn").on("click",function (){
+				if(!checkVar()){
+					return false;
+				}
+				if($.trim($("#strCode").val()) == "" || $.trim($("#strCode").val()) == null){
+					layer.open({
+						content: '请填入验证码'
+						,skin: 'msg'
+						,time: 2 //2秒后自动关闭
+					});
+					$("#strCode").focus();
+					return false;
+				}
+				$.post('{:url("mite/user/login");}', {"userphone":$("#strMobile").val(),"phonecode":$("#strCode").val()}, function(data, textStatus, xhr) {
+					layer.open({
+						content: data.msg,
+						skin: 'msg',
+						time: 1, //2秒后自动关闭
+						end:function(){
+							if(data.code == 0){
+								window.location.href = data.url;
+							}
+						}
+					});
+				},'JSON');
+				return false;
+			});
+
+			// $("#anonymityBtn").on("click",function (){
+			// 	layer.open({
+			// 		content: '敬请期待'
+			// 		,skin: 'msg'
+			// 		,time: 2 //2秒后自动关闭
+			// 	});
+			// });
+
+			function checkVar(){
+				if($.trim($("#strMobile").val()) == "" || $.trim($("#strMobile").val()) == null){
+					layer.open({
+						content: '请填写手机号'
+						,skin: 'msg'
+						,time: 2 //2秒后自动关闭
+					});
+					$("#strMobile").focus();
+					return false;
+				}else if($("#strMobile").val().length < 8){
+					layer.open({
+						content: '请填写有效手机号'
+						,skin: 'msg'
+						,time: 2 //2秒后自动关闭
+					});
+					$("#strMobile").focus();
+					return false;
+				}else if($("#select").val().length < 1){
+					layer.open({
+						content: '请选择手机号码归属地'
+						,skin: 'msg'
+						,time: 2 //2秒后自动关闭
+					});
+					return false;
+				}
+				return true;
+			}
+		});
+	</script>
+</body>
+</html>

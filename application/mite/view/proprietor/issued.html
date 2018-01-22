@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+            <title>
+                小虫
+            </title>
+            <link href="__PUBLIC__/css/mite.css" rel="stylesheet" type="text/css"></link>
+        </meta>
+    </head>
+    <body>
+        <header>
+            <em>
+                <
+            </em>
+            <span>
+                发布房源
+            </span>
+            <a class="rightBtn" href="{:url('Proprietor/housetype')}">
+                发布+
+            </a>
+        </header>
+        
+        <div class="inputElement" style="margin-top: 41px;">
+	        {volist name="houseData" id="vo"}
+		        <a href="{:url('Proprietor/rentinfo')}?houseid={$vo.houseid}">
+		            <div class="inputList">
+		                <div class="inputRight">
+		                    <em>
+		                        >
+		                    </em>
+		                </div>
+		                <span>
+		                    房屋编号: {$vo.houseid}
+		                    &nbsp;&nbsp;
+		                    {if condition="$vo.status == 0"}
+								未审核
+							{elseif condition="$vo.status eq 1"/}
+								已上线
+							{elseif condition="$vo.status eq 2"/}
+								禁用
+							{elseif condition="$vo.status eq 3"/}
+								未审核
+							{/if}
+		                </span>
+		                <var>
+		                	出租类型:
+		                    {if condition="$vo.leasetype == 3"}
+								沙发
+							{elseif condition="$vo.leasetype eq 2"/}
+								床位
+							{elseif condition="$vo.leasetype eq 1"/}
+								单间
+							{else /} 
+								整套
+							{/if}
+
+							&nbsp;
+
+							{if condition="$vo.housetype == 0"}
+								民居
+							{elseif condition="$vo.housetype eq 1"/}
+								公寓
+							{else /} 
+								别墅
+							{/if}
+
+							&nbsp;
+
+							{if condition="$vo.leaseperiod == 0"}
+								月租
+							{else /} 
+								日租
+							{/if}
+							
+		                </var>
+		            </div>
+		        </a>
+	        {/volist}
+        </div>
+
+        <script src="__PUBLIC__/js/jquery-3.1.0.min.js">
+        </script>
+        <script src="__PUBLIC__/js/miteCommon.js"></script>
+    </body>
+</html>

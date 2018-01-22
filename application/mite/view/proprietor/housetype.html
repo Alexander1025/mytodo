@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+            <title>
+                小虫
+            </title>
+            <link href="__PUBLIC__/css/mite.css" rel="stylesheet" type="text/css">
+                <style type="text/css">
+                    .inputList{
+            padding-left: 0;
+        }
+                </style>
+            </link>
+        </meta>
+    </head>
+    <body>
+        <header>
+            <em>
+                <
+            </em>
+            <span>
+                房屋类型
+            </span>
+        </header>
+        <div class="wrap">
+            <div class="bigTop">
+                <span class="text">
+                    您想要发布哪种房屋类型？
+                </span>
+            </div>
+            <div class="inputElement selecthousetype">
+                <div class="inputList" data-housetype="0">
+                    <div class="inputLeft">
+                        <img alt="" src="__PUBLIC__/image/icon/home123.png">
+                        
+                    </div>
+                    <div class="inputRight">
+                        <em>
+                            >
+                        </em>
+                    </div>
+                    <span>
+                        民居
+                    </span>
+                    <var>
+                        居住建筑、规整式住宅
+                    </var>
+                </div>
+                <div class="inputList" data-housetype="1">
+                    <div class="inputLeft">
+                        <img alt="" src="__PUBLIC__/image/icon/manshion.png">
+                        
+                    </div>
+                    <div class="inputRight">
+                        <em>
+                            >
+                        </em>
+                    </div>
+                    <span>
+                        公寓
+                    </span>
+                    <var>
+                        公共寓所
+                    </var>
+                </div>
+                <div class="inputList" data-housetype="2">
+                    <div class="inputLeft">
+                        <img alt="" src="__PUBLIC__/image/icon/house.png">
+                        
+                    </div>
+                    <div class="inputRight">
+                        <em>
+                            >
+                        </em>
+                    </div>
+                    <span>
+                        别墅
+                    </span>
+                    <var>
+                        改善型住宅、园林住宅
+                    </var>
+                </div>
+            </div>
+        </div>
+        <script src="__PUBLIC__/js/jquery-3.1.0.min.js">
+        </script>
+        <script src="__PUBLIC__/js/miteCommon.js">
+        </script>
+        <script>
+            var inputList = $('.selecthousetype .inputList');
+
+    // 点击选择发布房源的房屋类型
+    inputList.on('click',function(){
+
+        var data = {};
+        var housetype = $(this).data('housetype');
+
+        window.location.href = "{:url('Proprietor/leaseperiodtype')}?housetype="+housetype;
+        
+    });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+            <title>
+                小虫
+            </title>
+            <link href="__PUBLIC__/css/mite.css" rel="stylesheet" type="text/css">
+                <style type="text/css">
+                    .inputList{
+            padding-left: 0;
+        }
+                </style>
+            </link>
+        </meta>
+    </head>
+    <body>
+        <header>
+            <em>
+                <
+            </em>
+            <span>
+                出租类型
+            </span>
+        </header>
+        <div class="wrap">
+            <div class="bigTop">
+                <span class="text">
+                    您想要发布哪种类型？
+                </span>
+            </div>
+            <div class="inputElement selectleaseperiodtype">
+                <div class="inputList" data-housetype="{$housetype}" data-leaseperiodtype="0">
+                    <div class="inputLeft">
+                        <img alt="" src="__PUBLIC__/image/icon/month(1).png">
+                        
+                    </div>
+                    <div class="inputRight">
+                        <em>
+                            >
+                        </em>
+                    </div>
+                    <span>
+                        月租
+                    </span>
+                    <var>
+                        按月计算的租金
+                    </var>
+                </div>
+                <div class="inputList" data-housetype="{$housetype}" data-leaseperiodtype="1">
+                    <div class="inputLeft">
+                        <img alt="" src="__PUBLIC__/image/icon/day(1).png">
+                        
+                    </div>
+                    <div class="inputRight">
+                        <em>
+                            >
+                        </em>
+                    </div>
+                    <span>
+                        日租
+                    </span>
+                    <var>
+                        按日计算的租金
+                    </var>
+                </div>
+            </div>
+        </div>
+        <script src="__PUBLIC__/js/jquery-3.1.0.min.js">
+        </script>
+        <script src="__PUBLIC__/js/miteCommon.js">
+        </script>
+        <script>
+            var inputList = $('.selectleaseperiodtype .inputList');
+
+    // 点击选择发布房源的出租类型
+    inputList.on('click',function(){
+
+        var data = {};
+        var housetype = $(this).data('housetype');
+        var leaseperiodtype = $(this).data('leaseperiodtype');
+
+        window.location.href = "{:url('Proprietor/renttype')}?housetype="+housetype+"&leaseperiodtype="+leaseperiodtype;
+        
+    });
+        </script>
+    </body>
+</html>

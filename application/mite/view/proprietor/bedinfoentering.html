@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>小虫</title>
+	<link href="__PUBLIC__/css/mite.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<em><</em>
+		<span>
+			添加床铺
+		</span>
+	</header>
+	<div class="wrap" id="wrapInput" data-houseid="{$houseid}" data-ajaxurl="{:url('Proprietor/updbedinfo')}" data-info="" data-inspect="form,length,width,num">
+		<div class="inputElement">
+			<div class="inputList allInputSelect">
+				<div class="inputRight">
+					<em class="tipText">></em>
+				</div>
+				<span>床形</span>
+				<var>请选择床形</var>
+				<div class="hiddenInput">
+					<div class="titleInput">
+						
+					</div>
+					<div class="sortInput">
+						0
+					</div>
+					<div class="wrapSelect">
+						<select data-name="form">
+							<option value="1">双人床</option>
+							<option value="2">单人床</option>
+							<option value="3">双层床</option>
+							<option value="4">沙发</option>
+							<option value="5">榻榻米</option>
+							<option value="6">其他</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="inputList allInputPopup" data-name="length">
+				<div class="inputRight">
+					<em>
+						<var class="unit">
+							<span class="hint"></span>
+							m
+						</var>
+						> <!--">" 向右箭头-->
+					</em>
+				</div>
+				<span>长度</span>
+				<var>请输入床的长度</var>
+				<div class="hiddenInput">
+					<span class="inputTitle">
+						请输入床的长度
+					</span>
+					<br>
+					<input type="number" class="inputText" value="">
+					<var class="inputTips">
+						m
+					</var>
+				</div>
+			</div>
+
+			<div class="inputList allInputPopup" data-name="width">
+				<div class="inputRight">
+					<em>
+						<var class="unit">
+							<span class="hint"></span>
+							m
+						</var>
+						> <!--">" 向右箭头-->
+					</em>
+				</div>
+				<span>宽度</span>
+				<var>请输入床的宽度</var>
+				<div class="hiddenInput">
+					<span class="inputTitle">
+						请输入床的宽度
+					</span>
+					<br>
+					<input type="number" class="inputText" value="">
+					<var class="inputTips">
+						m
+					</var>
+				</div>
+			</div>
+
+			<div class="inputList allInputPopup" data-name="num">
+				<div class="inputRight">
+					<em>
+						<var class="unit">
+							<span class="hint"></span>
+							张
+						</var>
+						> <!--">" 向右箭头-->
+					</em>
+				</div>
+				<span>数量</span>
+				<var>请输入同等类型同等大小的床的数量</var>
+				<div class="hiddenInput">
+					<span class="inputTitle">
+						请输入床的数量
+					</span>
+					<br>
+					<input type="number" class="inputText" value="">
+					<var class="inputTips">
+						张
+					</var>
+				</div>
+			</div>
+		</div>
+
+		<div class="inputElement" style="text-align: center;">
+			<a class="inputElementA" href="javascript:void(0);">
+				确认添加床铺
+			</a>
+		</div>
+	</div>
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/mlayer/layer.js"></script>
+	<script src="__PUBLIC__/js/picker.min.js"></script>
+	<script src="__PUBLIC__/js/miteCommon.js"></script>
+</body>
+</html>
