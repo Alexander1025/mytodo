@@ -1,11 +1,13 @@
 <?php
 namespace app\index\controller;
 
-class Index
-{
-    public function index()
-    {
-        echo "hi";
-        exit();
-    }
+use think\Controller;
+
+class Index {
+    //首页
+	public function index() {
+
+
+        return view("index");
+	}
 }
